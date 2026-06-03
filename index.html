@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function Gym - Luyện hàm JavaScript</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="sidebar" aria-label="Danh sách bài tập">
+        <div class="brand">
+          <p class="eyebrow">JavaScript</p>
+          <h1>Function Gym</h1>
+        </div>
+
+        <div class="progress-box">
+          <span id="progressText">0/0 bài đã đúng</span>
+          <div class="progress-track" aria-hidden="true">
+            <div id="progressBar" class="progress-fill"></div>
+          </div>
+          <button id="resetAllBtn" class="secondary-btn full-width-btn" type="button">
+            Reset tất cả
+          </button>
+        </div>
+
+        <nav id="exerciseList" class="exercise-list"></nav>
+      </section>
+
+      <section class="workspace">
+        <header class="exercise-header">
+          <div>
+            <p id="exerciseLevel" class="eyebrow">Cấp độ 1</p>
+            <h2 id="exerciseTitle">Tên bài tập</h2>
+          </div>
+          <div id="statusPill" class="status-pill">Chưa làm</div>
+        </header>
+
+        <section class="prompt-panel">
+          <div class="panel-title compact">
+            <h3>Đề bài</h3>
+            <button id="hintBtn" class="secondary-btn" type="button">Hint</button>
+          </div>
+          <p id="exercisePrompt"></p>
+          <pre id="exampleBox" class="example-box"></pre>
+          <div id="hintBox" class="hint-box" hidden></div>
+        </section>
+
+        <section class="code-panel">
+          <div class="panel-title">
+            <h3>Code của bạn</h3>
+            <div class="tool-row">
+              <button id="resetBtn" class="secondary-btn" type="button">Làm lại</button>
+              <button id="runBtn" class="primary-btn" type="button">Chạy code</button>
+            </div>
+          </div>
+          <textarea
+            id="codeEditor"
+            spellcheck="false"
+            aria-label="Ô nhập code JavaScript"
+          ></textarea>
+        </section>
+
+        <section class="output-panel">
+          <div class="panel-title">
+            <h3>Kết quả</h3>
+            <span id="testSummary">Hãy bấm Chạy code</span>
+          </div>
+          <div id="outputBox" class="output-box"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
