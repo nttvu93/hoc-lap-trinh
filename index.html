@@ -19,6 +19,18 @@
           <div class="progress-track" aria-hidden="true">
             <div id="progressBar" class="progress-fill"></div>
           </div>
+          <button id="notebookBtn" class="primary-btn full-width-btn" type="button">
+            Notebook
+          </button>
+          <div class="group-controls" aria-label="Điều khiển nhóm bài tập">
+            <label class="toggle-row">
+              <input id="singleGroupToggle" type="checkbox" checked />
+              <span>Chỉ mở 1 nhóm</span>
+            </label>
+            <button id="toggleAllGroupsBtn" class="secondary-btn full-width-btn" type="button">
+              Rút gọn
+            </button>
+          </div>
           <button id="resetAllBtn" class="secondary-btn full-width-btn" type="button">
             Reset tất cả
           </button>
@@ -70,6 +82,22 @@
         </section>
       </section>
     </main>
+
+    <div id="notebookOverlay" class="notebook-overlay" hidden>
+      <section class="notebook-panel" aria-label="Notebook">
+        <header class="notebook-header">
+          <div>
+            <p class="eyebrow">Notebook</p>
+            <h2>Bài viết đã lưu</h2>
+          </div>
+          <button id="closeNotebookBtn" class="secondary-btn" type="button">Đóng</button>
+        </header>
+        <div class="notebook-body">
+          <nav id="notebookList" class="notebook-list" aria-label="Danh sách bài viết"></nav>
+          <article id="notebookContent" class="notebook-content"></article>
+        </div>
+      </section>
+    </div>
 
     <script src="app.js"></script>
   </body>

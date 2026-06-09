@@ -412,12 +412,170 @@ const syntaxRules = {
   "arrow-is-empty": { kind: "arrow", name: "isEmpty", params: ["text"] },
 };
 
+const notebookArticles = [
+  {
+    id: "function-evolution",
+    title: "Mức 1: Cách hàm được sinh ra",
+    meta: "Nền tảng: vì sao cần hàm",
+    blocks: [
+      { type: "p", text: "Hãy đi qua 4 giai đoạn tiến hóa thực tế của tư duy lập trình: từ chỗ chưa có hàm, đến khi cần tạo hàm, rồi chia nhỏ hàm, và cuối cùng là đặt hàm bên trong hàm để đóng gói." },
+      { type: "h", text: "Giai đoạn 1: Viết code chạy được" },
+      { type: "p", text: "Bạn muốn tính tiền lương cho nhân viên sau khi trừ thuế 10%. Ban đầu, cách tự nhiên nhất là viết thẳng từ trên xuống dưới." },
+      {
+        type: "code",
+        text: `let luongGoc = 1000;
+let thue = luongGoc * 0.1;
+let luongThucNhan = luongGoc - thue;
+console.log(luongThucNhan);`,
+      },
+      { type: "p", text: "Vấn đề: nếu công ty có 100 nhân viên, bạn không thể copy-paste đoạn code này 100 lần. Code sẽ dài, rác và rất khó sửa." },
+      { type: "h", text: "Giai đoạn 2: Đẻ ra hàm để tái sử dụng" },
+      { type: "p", text: "Ta gom logic tính lương vào một cái hộp có tên là tinhLuong. Cần tính cho ai thì gọi hàm đó." },
+      {
+        type: "code",
+        text: `function tinhLuong(luongGoc) {
+  let thue = luongGoc * 0.1;
+  return luongGoc - thue;
+}
+
+let luongNam = tinhLuong(1000);
+let luongVy = tinhLuong(1500);`,
+      },
+      { type: "p", text: "Vấn đề mới: khi luật thuế phức tạp hơn, hàm tinhLuong có thể phình thành 50 dòng. Nhìn vào rất mệt và dễ sửa nhầm." },
+      { type: "h", text: "Giai đoạn 3: Chia nhỏ hàm cho dễ quản lý" },
+      { type: "p", text: "Ta tách các phần nhỏ ra thành những hàm riêng như tinhBaoHiem, tinhThueTNCN. Hàm lớn chỉ điều phối các hàm nhỏ." },
+      {
+        type: "code",
+        text: `function tinhBaoHiem(luong) {
+  return luong * 0.08;
+}
+
+function tinhThueTNCN(luong) {
+  return luong * 0.1;
+}
+
+function tinhLuongTongThe(luongGoc) {
+  let tienBaoHiem = tinhBaoHiem(luongGoc);
+  let tienThue = tinhThueTNCN(luongGoc);
+  return luongGoc - tienBaoHiem - tienThue;
+}`,
+      },
+      { type: "p", text: "Vấn đề chí mạng: các hàm nhỏ đang nằm lộ thiên. Một người khác có thể vô tình tạo hàm trùng tên, hoặc gọi nhầm hàm ở nơi không nên gọi." },
+      { type: "h", text: "Giai đoạn 4: Hàm trong hàm để đóng gói" },
+      { type: "p", text: "Nếu các hàm nhỏ chỉ phục vụ hàm lớn, ta có thể đặt chúng vào bên trong hàm lớn. Bên ngoài không gọi bậy được nữa." },
+      {
+        type: "code",
+        text: `function tinhLuongTongThe(luongGoc) {
+  function tinhBaoHiem(luong) {
+    return luong * 0.08;
+  }
+
+  function tinhThueTNCN(luong) {
+    return luong * 0.1;
+  }
+
+  let tienBaoHiem = tinhBaoHiem(luongGoc);
+  let tienThue = tinhThueTNCN(luongGoc);
+
+  return luongGoc - tienBaoHiem - tienThue;
+}`,
+      },
+      { type: "h", text: "Đúc kết" },
+      {
+        type: "list",
+        items: [
+          "Viết thẳng quá nhiều lần thì sinh ra hàm.",
+          "Hàm quá dài thì sinh ra nhiều hàm nhỏ.",
+          "Nhiều hàm nhỏ lộ thiên quá thì sinh ra hàm trong hàm để đóng gói.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "three-function-styles",
+    title: "Mức 2: 3 cách khai báo hàm",
+    meta: "Cú pháp: declaration, expression, arrow",
+    blocks: [
+      { type: "p", text: "Trong JavaScript, từ lúc sơ khai đến hiện đại, có 3 cách khai báo hàm phổ biến nhất. Chúng sinh ra theo từng giai đoạn để giải quyết các vấn đề: code dài dòng, khó quản lý, rồi nhu cầu viết nhanh và gọn hơn." },
+      { type: "h", text: "Giai đoạn 1: Khai báo hàm truyền thống" },
+      { type: "p", text: "Đây là cách viết cổ điển nhất: dùng từ khóa function, đặt tên hàm rõ ràng, rồi viết phần thân hàm bên trong cặp dấu ngoặc nhọn." },
+      {
+        type: "code",
+        text: `function tinhBinhPhuong(x) {
+  return x * x;
+}
+
+console.log(tinhBinhPhuong(5));`,
+      },
+      { type: "p", text: "Điểm mạnh của function declaration là hoisting: bạn có thể gọi hàm trước khi viết phần khai báo, JavaScript vẫn hiểu. Nhưng trong dự án lớn, việc hàm lộ thiên và gọi được ở nhiều nơi có thể làm luồng chạy khó kiểm soát hơn." },
+      { type: "h", text: "Giai đoạn 2: Hàm biểu thức" },
+      { type: "p", text: "Tư duy cải tiến là coi hàm như một giá trị, rồi gán giá trị đó vào một biến hoặc hằng số. Khi dùng const, tên hàm được bảo vệ tốt hơn vì không thể gán lại." },
+      {
+        type: "code",
+        text: `const tinhBinhPhuong2 = function(x) {
+  return x * x;
+};
+
+console.log(tinhBinhPhuong2(5));`,
+      },
+      { type: "p", text: "Điểm cải tiến: code chạy rõ theo thứ tự từ trên xuống dưới. Bạn phải khai báo xong rồi mới gọi, nên dễ đoán hơn khi đọc và debug. Vấn đề còn lại là cú pháp vẫn hơi dài nếu hàm rất ngắn." },
+      { type: "h", text: "Giai đoạn 3: Hàm mũi tên" },
+      { type: "p", text: "Từ ES6, JavaScript có arrow function. Ý tưởng là bỏ chữ function, đặt dấu mũi tên => sau phần tham số để viết hàm gọn hơn." },
+      {
+        type: "code",
+        text: `const tinhBinhPhuong3 = (x) => {
+  return x * x;
+};`,
+      },
+      { type: "p", text: "Nếu hàm chỉ có một dòng và dòng đó trả về giá trị, bạn có thể bỏ luôn cặp ngoặc nhọn và chữ return. Nếu chỉ có một tham số, bạn cũng có thể bỏ cặp ngoặc đơn quanh tham số." },
+      {
+        type: "code",
+        text: `const tinhBinhPhuongSieuGon = x => x * x;
+
+console.log(tinhBinhPhuongSieuGon(5));`,
+      },
+      { type: "h", text: "Cách chọn khi làm bài" },
+      {
+        type: "list",
+        items: [
+          "Dùng arrow function một dòng khi hàm rất ngắn, ví dụ nhân đôi, tính phần trăm, lấy giá trị nhanh.",
+          "Dùng function expression khi muốn gán hàm vào const để quản lý chặt hơn.",
+          "Dùng function declaration khi muốn hàm rõ tên, dễ đọc, nhất là với logic nhiều dòng.",
+          "Khi mới học, điều quan trọng nhất là hiểu cả 3 cách đều tạo ra hàm; khác nhau chủ yếu ở cú pháp, hoisting và cách this hoạt động.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "this-owner-rule",
+    title: "Mức 3: this trong object method",
+    meta: "Chuyên sâu hơn: ai gọi hàm?",
+    blocks: [
+      { type: "p", text: "Ở mức cơ bản nhất, khi một object gọi method, this trỏ về object đứng trước dấu chấm." },
+      {
+        type: "code",
+        text: `const toi = {
+  ten: "Nam",
+  chao: function() {
+    console.log(this.ten);
+  }
+};
+
+toi.chao();`,
+      },
+      { type: "p", text: "Trong dòng toi.chao(), object đứng trước dấu chấm là toi. Vì vậy bên trong chao, this chính là toi." },
+    ],
+  },
+];
+
 const state = {
   currentIndex: 0,
   answers: new Map(),
   passed: new Set(JSON.parse(localStorage.getItem("functionGymPassed") || "[]")),
   hintOpen: false,
   openGroups: new Set(["Khai báo hàm"]),
+  singleGroupMode: localStorage.getItem("functionGymSingleGroupMode") !== "false",
+  currentNotebookId: notebookArticles[0].id,
 };
 
 const exerciseList = document.querySelector("#exerciseList");
@@ -436,15 +594,113 @@ const runBtn = document.querySelector("#runBtn");
 const resetBtn = document.querySelector("#resetBtn");
 const hintBtn = document.querySelector("#hintBtn");
 const resetAllBtn = document.querySelector("#resetAllBtn");
+const singleGroupToggle = document.querySelector("#singleGroupToggle");
+const toggleAllGroupsBtn = document.querySelector("#toggleAllGroupsBtn");
+const notebookBtn = document.querySelector("#notebookBtn");
+const notebookOverlay = document.querySelector("#notebookOverlay");
+const notebookList = document.querySelector("#notebookList");
+const notebookContent = document.querySelector("#notebookContent");
+const closeNotebookBtn = document.querySelector("#closeNotebookBtn");
 
-function renderExerciseList() {
-  exerciseList.innerHTML = "";
-
-  const groups = exercises.reduce((result, exercise, index) => {
+function getExerciseGroups() {
+  return exercises.reduce((result, exercise, index) => {
     if (!result.has(exercise.type)) result.set(exercise.type, []);
     result.get(exercise.type).push({ exercise, index });
     return result;
   }, new Map());
+}
+
+function getCurrentGroupName() {
+  return exercises[state.currentIndex].type;
+}
+
+function syncGroupControls() {
+  singleGroupToggle.checked = state.singleGroupMode;
+  toggleAllGroupsBtn.textContent = state.openGroups.size > 0 ? "Rút gọn" : "Xổ tất cả";
+}
+
+function renderNotebookList() {
+  notebookList.innerHTML = "";
+
+  notebookArticles.forEach((article) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "notebook-item";
+    if (article.id === state.currentNotebookId) item.classList.add("active");
+    item.innerHTML = `
+      <strong>${article.title}</strong>
+      <span>${article.meta}</span>
+    `;
+    item.addEventListener("click", () => {
+      state.currentNotebookId = article.id;
+      renderNotebook();
+    });
+    notebookList.appendChild(item);
+  });
+}
+
+function appendNotebookBlock(block) {
+  if (block.type === "h") {
+    const heading = document.createElement("h4");
+    heading.textContent = block.text;
+    notebookContent.appendChild(heading);
+    return;
+  }
+
+  if (block.type === "code") {
+    const pre = document.createElement("pre");
+    pre.textContent = block.text;
+    notebookContent.appendChild(pre);
+    return;
+  }
+
+  if (block.type === "list") {
+    const list = document.createElement("ul");
+    block.items.forEach((itemText) => {
+      const item = document.createElement("li");
+      item.textContent = itemText;
+      list.appendChild(item);
+    });
+    notebookContent.appendChild(list);
+    return;
+  }
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = block.text;
+  notebookContent.appendChild(paragraph);
+}
+
+function renderNotebookContent() {
+  const article =
+    notebookArticles.find((item) => item.id === state.currentNotebookId) ||
+    notebookArticles[0];
+
+  notebookContent.innerHTML = "";
+  const title = document.createElement("h3");
+  title.textContent = article.title;
+  notebookContent.appendChild(title);
+  article.blocks.forEach(appendNotebookBlock);
+}
+
+function renderNotebook() {
+  renderNotebookList();
+  renderNotebookContent();
+}
+
+function openNotebook() {
+  renderNotebook();
+  notebookOverlay.hidden = false;
+}
+
+function closeNotebook() {
+  notebookOverlay.hidden = true;
+}
+
+function renderExerciseList() {
+  exerciseList.innerHTML = "";
+  syncGroupControls();
+
+  const groups = getExerciseGroups();
 
   groups.forEach((items, groupName) => {
     const group = document.createElement("section");
@@ -464,6 +720,8 @@ function renderExerciseList() {
     groupButton.addEventListener("click", () => {
       if (state.openGroups.has(groupName)) {
         state.openGroups.delete(groupName);
+      } else if (state.singleGroupMode) {
+        state.openGroups = new Set([groupName]);
       } else {
         state.openGroups.add(groupName);
       }
@@ -491,7 +749,11 @@ function renderExerciseList() {
         item.addEventListener("click", () => {
           saveCurrentAnswer();
           state.currentIndex = index;
-          state.openGroups.add(exercise.type);
+          if (state.singleGroupMode) {
+            state.openGroups = new Set([exercise.type]);
+          } else {
+            state.openGroups.add(exercise.type);
+          }
           state.hintOpen = false;
           renderCurrentExercise();
         });
@@ -506,11 +768,87 @@ function renderExerciseList() {
   });
 }
 
+function isWordLike(text) {
+  return /^[A-Za-z_$][\w$]*$/.test(text);
+}
+
+function hasIdentifierBoundary(text, start, length) {
+  const before = text[start - 1] || "";
+  const after = text[start + length] || "";
+  return !/[\p{L}\p{N}_$]/u.test(before) && !/[\p{L}\p{N}_$]/u.test(after);
+}
+
+function addHighlightTerm(terms, text, tone) {
+  if (!text) return;
+  if (!terms.some((term) => term.text === text)) {
+    terms.push({ text, tone });
+  }
+}
+
+function getPromptHighlightTerms(exercise) {
+  const terms = [];
+  const rule = syntaxRules[exercise.id];
+
+  if (rule) {
+    addHighlightTerm(terms, rule.name, "name");
+    rule.params.forEach((param) => addHighlightTerm(terms, param, "param"));
+  }
+
+  exercise.tests.forEach((test) => {
+    const expression = test.expression;
+    const callMatch = expression.match(/[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)?\s*\([^)]*\)/);
+    if (callMatch) addHighlightTerm(terms, callMatch[0].replace(/\s+/g, ""), "call");
+
+    expression.match(/[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)?/g)?.forEach((piece) => {
+      if (["true", "false", "__logs"].includes(piece)) return;
+      if (piece.includes(".")) {
+        const [objectName, memberName] = piece.split(".");
+        addHighlightTerm(terms, piece, "call");
+        addHighlightTerm(terms, objectName, "name");
+        addHighlightTerm(terms, memberName, "method");
+      } else {
+        addHighlightTerm(terms, piece, "name");
+      }
+    });
+  });
+
+  exercise.prompt.match(/"[^"]+"/g)?.forEach((quotedText) => {
+    addHighlightTerm(terms, quotedText, "result");
+  });
+
+  return terms.sort((a, b) => b.text.length - a.text.length);
+}
+
+function renderHighlightedPrompt(exercise) {
+  const prompt = exercise.prompt;
+  const terms = getPromptHighlightTerms(exercise);
+  exercisePrompt.innerHTML = "";
+
+  for (let index = 0; index < prompt.length; ) {
+    const match = terms.find((term) => {
+      if (!prompt.startsWith(term.text, index)) return false;
+      return !isWordLike(term.text) || hasIdentifierBoundary(prompt, index, term.text.length);
+    });
+
+    if (!match) {
+      exercisePrompt.appendChild(document.createTextNode(prompt[index]));
+      index += 1;
+      continue;
+    }
+
+    const token = document.createElement("span");
+    token.className = `prompt-token ${match.tone}`;
+    token.textContent = match.text;
+    exercisePrompt.appendChild(token);
+    index += match.text.length;
+  }
+}
+
 function renderCurrentExercise() {
   const exercise = exercises[state.currentIndex];
   exerciseLevel.textContent = exercise.level;
   exerciseTitle.textContent = exercise.title;
-  exercisePrompt.textContent = exercise.prompt;
+  renderHighlightedPrompt(exercise);
   exampleBox.textContent = exercise.example;
   hintBox.textContent = exercise.hint;
   hintBox.hidden = !state.hintOpen;
@@ -520,6 +858,7 @@ function renderCurrentExercise() {
     '<p class="result-line warn">Hãy viết code rồi bấm Chạy code.</p>';
   testSummary.textContent = "Hãy bấm Chạy code";
   updateStatusPill();
+  syncGroupControls();
   renderExerciseList();
   updateProgress();
 }
@@ -718,6 +1057,41 @@ function resetAllExercises() {
   renderCurrentExercise();
 }
 
+function setSingleGroupMode(enabled) {
+  state.singleGroupMode = enabled;
+  localStorage.setItem("functionGymSingleGroupMode", String(enabled));
+
+  if (enabled) {
+    state.openGroups = new Set([getCurrentGroupName()]);
+  }
+
+  syncGroupControls();
+  renderExerciseList();
+}
+
+function expandAllGroups() {
+  state.singleGroupMode = false;
+  localStorage.setItem("functionGymSingleGroupMode", "false");
+  state.openGroups = new Set(getExerciseGroups().keys());
+  syncGroupControls();
+  renderExerciseList();
+}
+
+function collapseAllGroups() {
+  state.openGroups.clear();
+  syncGroupControls();
+  renderExerciseList();
+}
+
+function toggleAllGroups() {
+  if (state.openGroups.size > 0) {
+    collapseAllGroups();
+    return;
+  }
+
+  expandAllGroups();
+}
+
 function toggleHint() {
   saveCurrentAnswer();
   state.hintOpen = !state.hintOpen;
@@ -729,6 +1103,15 @@ runBtn.addEventListener("click", runTests);
 resetBtn.addEventListener("click", resetCurrentExercise);
 hintBtn.addEventListener("click", toggleHint);
 resetAllBtn.addEventListener("click", resetAllExercises);
+singleGroupToggle.addEventListener("change", () => {
+  setSingleGroupMode(singleGroupToggle.checked);
+});
+toggleAllGroupsBtn.addEventListener("click", toggleAllGroups);
+notebookBtn.addEventListener("click", openNotebook);
+closeNotebookBtn.addEventListener("click", closeNotebook);
+notebookOverlay.addEventListener("click", (event) => {
+  if (event.target === notebookOverlay) closeNotebook();
+});
 
 codeEditor.addEventListener("keydown", (event) => {
   if (event.key === "Tab") {
@@ -743,6 +1126,12 @@ codeEditor.addEventListener("keydown", (event) => {
   if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
     event.preventDefault();
     runTests();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !notebookOverlay.hidden) {
+    closeNotebook();
   }
 });
 
