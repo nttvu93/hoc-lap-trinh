@@ -14,14 +14,17 @@
           <h1>Function Gym</h1>
         </div>
 
-        <div class="progress-box">
+        <div class="mode-tabs" aria-label="Chế độ học">
+          <button id="notebookBtn" class="mode-tab" type="button">Notebook</button>
+          <button id="playgroundModeBtn" class="mode-tab" type="button">Code tự do</button>
+          <button id="exerciseModeBtn" class="mode-tab active" type="button">Bài tập</button>
+        </div>
+
+        <div id="exerciseSidebarTools" class="progress-box">
           <span id="progressText">0/0 bài đã đúng</span>
           <div class="progress-track" aria-hidden="true">
             <div id="progressBar" class="progress-fill"></div>
           </div>
-          <button id="notebookBtn" class="primary-btn full-width-btn" type="button">
-            Notebook
-          </button>
           <div class="group-controls" aria-label="Điều khiển nhóm bài tập">
             <label class="toggle-row">
               <input id="singleGroupToggle" type="checkbox" checked />
@@ -40,65 +43,103 @@
       </section>
 
       <section class="workspace">
-        <header class="exercise-header">
-          <div>
-            <p id="exerciseLevel" class="eyebrow">Cấp độ 1</p>
-            <h2 id="exerciseTitle">Tên bài tập</h2>
-          </div>
-          <div id="statusPill" class="status-pill">Chưa làm</div>
-        </header>
+        <div id="exerciseView" class="app-view exercise-view">
+          <header class="exercise-header">
+            <div>
+              <p id="exerciseLevel" class="eyebrow">Cấp độ 1</p>
+              <h2 id="exerciseTitle">Tên bài tập</h2>
+            </div>
+            <div id="statusPill" class="status-pill">Chưa làm</div>
+          </header>
 
-        <section class="prompt-panel">
-          <div class="panel-title compact">
-            <h3>Đề bài</h3>
-            <button id="hintBtn" class="secondary-btn" type="button">Hint</button>
-          </div>
-          <p id="exercisePrompt"></p>
-          <pre id="exampleBox" class="example-box"></pre>
-          <div id="hintBox" class="hint-box" hidden></div>
-        </section>
+          <section class="prompt-panel">
+            <div class="panel-title compact">
+              <h3>Đề bài</h3>
+              <div class="tool-row">
+                <button id="hintBtn" class="secondary-btn" type="button">Hint</button>
+                <button id="solutionBtn" class="secondary-btn" type="button">Lời giải</button>
+              </div>
+            </div>
+            <p id="exercisePrompt"></p>
+            <pre id="exampleBox" class="example-box"></pre>
+            <div id="hintBox" class="hint-box" hidden></div>
+            <pre id="solutionBox" class="solution-box" hidden></pre>
+          </section>
 
-        <section class="code-panel">
+          <section class="code-panel">
+            <div class="panel-title">
+              <h3>Code của bạn</h3>
+              <div class="tool-row">
+                <button id="resetBtn" class="secondary-btn" type="button">Làm lại</button>
+                <button id="runBtn" class="primary-btn" type="button">Chạy code</button>
+              </div>
+            </div>
+            <textarea
+              id="codeEditor"
+              spellcheck="false"
+              aria-label="Ô nhập code JavaScript"
+            ></textarea>
+          </section>
+
+          <section class="output-panel">
+            <div class="panel-title">
+              <h3>Kết quả</h3>
+              <span id="testSummary">Hãy bấm Chạy code</span>
+            </div>
+            <div id="outputBox" class="output-box"></div>
+          </section>
+        </div>
+
+        <section id="playgroundView" class="app-view playground-panel" hidden>
           <div class="panel-title">
-            <h3>Code của bạn</h3>
+            <div>
+              <p class="eyebrow">Sandbox</p>
+              <h3>Code tự do</h3>
+            </div>
             <div class="tool-row">
-              <button id="resetBtn" class="secondary-btn" type="button">Làm lại</button>
-              <button id="runBtn" class="primary-btn" type="button">Chạy code</button>
+              <button id="clearPlaygroundBtn" class="secondary-btn" type="button">
+                Xóa
+              </button>
+              <button id="runPlaygroundBtn" class="primary-btn" type="button">
+                Chạy thử
+              </button>
             </div>
           </div>
-          <textarea
-            id="codeEditor"
-            spellcheck="false"
-            aria-label="Ô nhập code JavaScript"
-          ></textarea>
+          <div class="playground-grid">
+            <textarea
+              id="playgroundEditor"
+              spellcheck="false"
+              aria-label="Ô nhập code JavaScript tự do"
+            ></textarea>
+            <div class="console-panel" aria-label="Console">
+              <div class="console-title">
+                <span>Console</span>
+                <small id="playgroundStatus">Sẵn sàng</small>
+              </div>
+              <div id="playgroundConsole" class="console-output"></div>
+            </div>
+          </div>
         </section>
 
-        <section class="output-panel">
-          <div class="panel-title">
-            <h3>Kết quả</h3>
-            <span id="testSummary">Hãy bấm Chạy code</span>
+        <section id="notebookView" class="app-view notebook-view" hidden>
+          <div class="notebook-panel">
+            <header class="notebook-header">
+              <div>
+                <p class="eyebrow">Notebook</p>
+                <h2>Bài viết đã lưu</h2>
+              </div>
+              <button id="closeNotebookBtn" class="secondary-btn" type="button">Về bài tập</button>
+            </header>
+            <div class="notebook-body">
+              <nav id="notebookList" class="notebook-list" aria-label="Danh sách bài viết"></nav>
+              <article id="notebookContent" class="notebook-content"></article>
+            </div>
           </div>
-          <div id="outputBox" class="output-box"></div>
         </section>
       </section>
     </main>
 
-    <div id="notebookOverlay" class="notebook-overlay" hidden>
-      <section class="notebook-panel" aria-label="Notebook">
-        <header class="notebook-header">
-          <div>
-            <p class="eyebrow">Notebook</p>
-            <h2>Bài viết đã lưu</h2>
-          </div>
-          <button id="closeNotebookBtn" class="secondary-btn" type="button">Đóng</button>
-        </header>
-        <div class="notebook-body">
-          <nav id="notebookList" class="notebook-list" aria-label="Danh sách bài viết"></nav>
-          <article id="notebookContent" class="notebook-content"></article>
-        </div>
-      </section>
-    </div>
-
+    <script src="curriculum.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

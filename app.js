@@ -1,312 +1,403 @@
 const exercises = [
-  {
+{
     id: "declaration-add",
-    level: "Function declare",
-    title: "Khai báo hàm: add",
-    type: "Khai báo hàm",
+    level: "Cách viết hàm",
+    title: "Cách 1: Function declaration",
+    type: "Cách viết hàm",
     prompt:
-      "Tạo hàm add với 2 tham số a và b. Kết quả trả về là tổng của a và b.",
+      "Bối cảnh: Bạn đang học 3 cách viết hàm trong JavaScript. Cách đầu tiên là khai báo hàm truyền thống bằng từ khóa function.\nYêu cầu: Viết hàm add bằng function declaration với 2 tham số a và b.\nKết quả: Trả về tổng của a và b.",
     example: "Kết quả mong muốn:\nadd(2, 3) => 5\nadd(-1, 6) => 5",
-    hint: `function add(a, b) {\n  return a + b;\n}`,
+    hint: `Gợi ý:
+- Đây là cách viết có tên hàm đứng ngay sau từ khóa function.
+- Cú pháp này thường dễ đọc khi mới học.
+- Hàm cần tên add và nhận a, b.
+- Bên trong hàm, trả về a + b.`,
     tests: [
       { expression: "add(2, 3)", expected: 5 },
       { expression: "add(-1, 6)", expected: 5 },
       { expression: "add(10, 0)", expected: 10 },
     ],
   },
-  {
-    id: "declaration-subtract",
-    level: "Function declare",
-    title: "Khai báo hàm: subtract",
-    type: "Khai báo hàm",
-    prompt:
-      "Tạo hàm subtract với 2 tham số a và b. Kết quả trả về là a trừ b.",
-    example: "Kết quả mong muốn:\nsubtract(8, 3) => 5\nsubtract(4, 9) => -5",
-    hint: `function subtract(a, b) {\n  return a - b;\n}`,
-    tests: [
-      { expression: "subtract(8, 3)", expected: 5 },
-      { expression: "subtract(4, 9)", expected: -5 },
-      { expression: "subtract(10, 10)", expected: 0 },
-    ],
-  },
-  {
-    id: "declaration-greet",
-    level: "Function declare",
-    title: "Khai báo hàm: sayHello",
-    type: "Khai báo hàm",
-    prompt:
-      "Tạo hàm sayHello với 1 tham số name. Kết quả trả về là chuỗi Xin chào, [name]!",
-    example: 'Kết quả mong muốn:\nsayHello("An") => "Xin chào, An!"',
-    hint: `function sayHello(name) {\n  return "Xin chào, " + name + "!";\n}`,
-    tests: [
-      { expression: 'sayHello("An")', expected: "Xin chào, An!" },
-      { expression: 'sayHello("Bình")', expected: "Xin chào, Bình!" },
-    ],
-  },
-  {
-    id: "declaration-is-even",
-    level: "Function declare",
-    title: "Khai báo hàm: isEven",
-    type: "Khai báo hàm",
-    prompt:
-      "Tạo hàm isEven với 1 tham số n. Kết quả trả về là true nếu n là số chẵn, ngược lại trả về false.",
-    example: "Kết quả mong muốn:\nisEven(4) => true\nisEven(7) => false",
-    hint: `function isEven(n) {\n  return n % 2 === 0;\n}`,
-    tests: [
-      { expression: "isEven(4)", expected: true },
-      { expression: "isEven(7)", expected: false },
-      { expression: "isEven(0)", expected: true },
-    ],
-  },
-  {
-    id: "declaration-max",
-    level: "Function declare",
-    title: "Khai báo hàm: max",
-    type: "Khai báo hàm",
-    prompt:
-      "Tạo hàm max với 2 tham số a và b. Kết quả trả về là số lớn hơn.",
-    example: "Kết quả mong muốn:\nmax(3, 9) => 9\nmax(10, 2) => 10",
-    hint: `function max(a, b) {\n  if (a > b) {\n    return a;\n  }\n\n  return b;\n}`,
-    tests: [
-      { expression: "max(3, 9)", expected: 9 },
-      { expression: "max(10, 2)", expected: 10 },
-      { expression: "max(5, 5)", expected: 5 },
-    ],
-  },
-  {
+{
     id: "expression-square",
-    level: "Function expression",
-    title: "Biểu thức hàm: square",
-    type: "Biểu thức hàm",
+    level: "Cách viết hàm",
+    title: "Cách 2: Function expression",
+    type: "Cách viết hàm",
     prompt:
-      "Tạo biến square và gán cho biến đó một hàm. Hàm nhận tham số n, kết quả trả về là n nhân n.",
+      "Bối cảnh: Bạn đang học cách coi hàm như một giá trị rồi gán vào biến. Đây là function expression.\nYêu cầu: Tạo biến square và gán cho biến đó một hàm nhận tham số n.\nKết quả: Trả về n nhân n.",
     example: "Kết quả mong muốn:\nsquare(4) => 16\nsquare(-3) => 9",
-    hint: `const square = function(n) {\n  return n * n;\n};`,
+    hint: `Gợi ý:
+- Tạo một hằng số tên square.
+- Gán một hàm vào hằng số đó.
+- Function expression thường có dấu ; sau phần gán.
+- Bình phương nghĩa là n nhân chính nó.`,
     tests: [
       { expression: "square(4)", expected: 16 },
       { expression: "square(9)", expected: 81 },
       { expression: "square(-3)", expected: 9 },
     ],
   },
-  {
-    id: "expression-is-adult",
-    level: "Function expression",
-    title: "Biểu thức hàm: isAdult",
-    type: "Biểu thức hàm",
-    prompt:
-      "Tạo biến isAdult và gán cho biến đó một hàm. Hàm nhận tham số age, kết quả trả về là true nếu age từ 18 trở lên.",
-    example: "Kết quả mong muốn:\nisAdult(20) => true\nisAdult(15) => false",
-    hint: `const isAdult = function(age) {\n  return age >= 18;\n};`,
-    tests: [
-      { expression: "isAdult(20)", expected: true },
-      { expression: "isAdult(18)", expected: true },
-      { expression: "isAdult(15)", expected: false },
-    ],
-  },
-  {
-    id: "expression-first-char",
-    level: "Function expression",
-    title: "Biểu thức hàm: firstChar",
-    type: "Biểu thức hàm",
-    prompt:
-      "Tạo biến firstChar và gán cho biến đó một hàm. Hàm nhận tham số text, kết quả trả về là ký tự đầu tiên của text.",
-    example: 'Kết quả mong muốn:\nfirstChar("JavaScript") => "J"',
-    hint: `const firstChar = function(text) {\n  return text[0];\n};`,
-    tests: [
-      { expression: 'firstChar("JavaScript")', expected: "J" },
-      { expression: 'firstChar("Code")', expected: "C" },
-    ],
-  },
-  {
-    id: "expression-total-price",
-    level: "Function expression",
-    title: "Biểu thức hàm: totalPrice",
-    type: "Biểu thức hàm",
-    prompt:
-      "Tạo biến totalPrice và gán cho biến đó một hàm. Hàm nhận price và quantity, kết quả trả về là price nhân quantity.",
-    example: "Kết quả mong muốn:\ntotalPrice(5, 3) => 15",
-    hint: `const totalPrice = function(price, quantity) {\n  return price * quantity;\n};`,
-    tests: [
-      { expression: "totalPrice(5, 3)", expected: 15 },
-      { expression: "totalPrice(12, 2)", expected: 24 },
-      { expression: "totalPrice(9, 0)", expected: 0 },
-    ],
-  },
-  {
-    id: "expression-make-email",
-    level: "Function expression",
-    title: "Biểu thức hàm: makeEmail",
-    type: "Biểu thức hàm",
-    prompt:
-      "Tạo biến makeEmail và gán cho biến đó một hàm. Hàm nhận username, kết quả trả về là username cộng với @gmail.com.",
-    example: 'Kết quả mong muốn:\nmakeEmail("an") => "an@gmail.com"',
-    hint: `const makeEmail = function(username) {\n  return username + "@gmail.com";\n};`,
-    tests: [
-      { expression: 'makeEmail("an")', expected: "an@gmail.com" },
-      { expression: 'makeEmail("binh")', expected: "binh@gmail.com" },
-    ],
-  },
-  {
+{
     id: "arrow-double",
-    level: "Arrow function",
-    title: "Hàm mũi tên: double",
-    type: "Hàm mũi tên",
+    level: "Cách viết hàm",
+    title: "Cách 3: Arrow function",
+    type: "Cách viết hàm",
     prompt:
-      "Tạo biến double bằng hàm mũi tên. Hàm nhận tham số n, kết quả trả về là n nhân 2.",
+      "Bối cảnh: Bạn đang học cách viết hàm ngắn gọn hơn bằng dấu mũi tên => trong JavaScript hiện đại.\nYêu cầu: Tạo biến double bằng hàm mũi tên, nhận tham số n.\nKết quả: Trả về n nhân 2.",
     example: "Kết quả mong muốn:\ndouble(5) => 10\ndouble(-4) => -8",
-    hint: `const double = (n) => {\n  return n * 2;\n};`,
+    hint: `Gợi ý:
+- Arrow function dùng ký hiệu =>.
+- Tạo một hằng số tên double.
+- Hàm nhận 1 tham số n.
+- Có thể viết dạng nhiều dòng hoặc rút gọn một dòng.`,
     tests: [
       { expression: "double(5)", expected: 10 },
       { expression: "double(-4)", expected: -8 },
       { expression: "double(0)", expected: 0 },
     ],
   },
-  {
-    id: "arrow-first-item",
-    level: "Arrow function",
-    title: "Hàm mũi tên: getFirstItem",
-    type: "Hàm mũi tên",
+{
+    id: "declaration-subtract",
+    level: "Toán tử và điều kiện",
+    title: "Toán tử -: subtract",
+    type: "Toán tử và điều kiện",
     prompt:
-      "Tạo biến getFirstItem bằng hàm mũi tên. Hàm nhận tham số arr, kết quả trả về là phần tử đầu tiên của arr.",
-    example: 'Kết quả mong muốn:\ngetFirstItem(["a", "b"]) => "a"',
-    hint: `const getFirstItem = (arr) => {\n  return arr[0];\n};`,
+      "Bối cảnh: Một cửa hàng muốn biết sau khi dùng phiếu giảm giá thì khách còn phải trả bao nhiêu.\nYêu cầu: Tạo hàm subtract với 2 tham số a và b.\nKết quả: Trả về a trừ b.",
+    example: "Kết quả mong muốn:\nsubtract(8, 3) => 5\nsubtract(4, 9) => -5",
+    hint: `Gợi ý:
+- Dùng cú pháp khai báo hàm với tên subtract.
+- Hàm cần nhận 2 tham số: a và b.
+- Kết quả cần là a trừ b.
+- Phép trừ trong JavaScript dùng dấu -.
+- Đừng đảo thành b - a, vì kết quả sẽ khác.`,
     tests: [
-      { expression: 'getFirstItem(["a", "b"])', expected: "a" },
-      { expression: "getFirstItem([7, 8, 9])", expected: 7 },
+      { expression: "subtract(8, 3)", expected: 5 },
+      { expression: "subtract(4, 9)", expected: -5 },
+      { expression: "subtract(10, 10)", expected: 0 },
     ],
   },
-  {
-    id: "arrow-last-item",
-    level: "Arrow function",
-    title: "Hàm mũi tên: getLastItem",
-    type: "Hàm mũi tên",
+{
+    id: "expression-total-price",
+    level: "Toán tử và điều kiện",
+    title: "Toán tử *: totalPrice",
+    type: "Toán tử và điều kiện",
     prompt:
-      "Tạo biến getLastItem bằng hàm mũi tên. Hàm nhận tham số arr, kết quả trả về là phần tử cuối cùng của arr.",
-    example: "Kết quả mong muốn:\ngetLastItem([1, 2, 3]) => 3",
-    hint: `const getLastItem = (arr) => {\n  return arr[arr.length - 1];\n};`,
+      "Bối cảnh: Một giỏ hàng cần tính tổng tiền cho một sản phẩm dựa trên giá và số lượng.\nYêu cầu: Tạo hàm totalPrice với 2 tham số price và quantity.\nKết quả: Trả về price nhân quantity.",
+    example: "Kết quả mong muốn:\ntotalPrice(5, 3) => 15",
+    hint: `Gợi ý:
+- Tạo một hàm tên totalPrice.
+- Hàm nhận price và quantity.
+- Tổng tiền = giá của 1 món nhân với số lượng.
+- Phép nhân trong JavaScript dùng dấu *.`,
     tests: [
-      { expression: "getLastItem([1, 2, 3])", expected: 3 },
-      { expression: 'getLastItem(["x", "y"])', expected: "y" },
+      { expression: "totalPrice(5, 3)", expected: 15 },
+      { expression: "totalPrice(12, 2)", expected: 24 },
+      { expression: "totalPrice(9, 0)", expected: 0 },
     ],
   },
-  {
+{
+    id: "declaration-is-even",
+    level: "Toán tử và điều kiện",
+    title: "Toán tử %: isEven",
+    type: "Toán tử và điều kiện",
+    prompt:
+      "Bối cảnh: Bạn đang làm trò chơi chia đội, người chơi số chẵn vào một đội và số lẻ vào đội còn lại.\nYêu cầu: Tạo hàm isEven với 1 tham số n.\nKết quả: Trả về true nếu n là số chẵn, ngược lại trả về false.",
+    example: "Kết quả mong muốn:\nisEven(4) => true\nisEven(7) => false",
+    hint: `Gợi ý:
+- Số chẵn là số chia cho 2 dư 0.
+- Trong JavaScript, toán tử % dùng để lấy phần dư.
+- n % 2 sẽ cho biết n chia 2 còn dư bao nhiêu.
+- Nếu phần dư bằng 0 thì trả về true.
+- Nếu không bằng 0 thì biểu thức so sánh tự trả về false.`,
+    tests: [
+      { expression: "isEven(4)", expected: true },
+      { expression: "isEven(7)", expected: false },
+      { expression: "isEven(0)", expected: true },
+    ],
+  },
+{
+    id: "expression-is-adult",
+    level: "Toán tử và điều kiện",
+    title: "So sánh >=: isAdult",
+    type: "Toán tử và điều kiện",
+    prompt:
+      "Bối cảnh: Một trang đăng ký cần kiểm tra người dùng đã đủ tuổi mở tài khoản hay chưa.\nYêu cầu: Tạo hàm isAdult với 1 tham số age.\nKết quả: Trả về true nếu age từ 18 trở lên.",
+    example: "Kết quả mong muốn:\nisAdult(20) => true\nisAdult(15) => false",
+    hint: `Gợi ý:
+- Tạo một hàm tên isAdult.
+- Hàm nhận tham số age.
+- Người trưởng thành khi age từ 18 trở lên.
+- Toán tử >= nghĩa là lớn hơn hoặc bằng.
+- Biểu thức age >= 18 tự cho ra true hoặc false.`,
+    tests: [
+      { expression: "isAdult(20)", expected: true },
+      { expression: "isAdult(18)", expected: true },
+      { expression: "isAdult(15)", expected: false },
+    ],
+  },
+{
+    id: "declaration-max",
+    level: "Toán tử và điều kiện",
+    title: "Điều kiện if: max",
+    type: "Toán tử và điều kiện",
+    prompt:
+      "Bối cảnh: Một bảng điểm cần tìm điểm cao hơn giữa 2 lần kiểm tra của học sinh.\nYêu cầu: Tạo hàm max với 2 tham số a và b.\nKết quả: Trả về số lớn hơn.",
+    example: "Kết quả mong muốn:\nmax(3, 9) => 9\nmax(10, 2) => 10",
+    hint: `Gợi ý:
+- Cần so sánh a và b.
+- Nếu a lớn hơn b thì số lớn hơn là a.
+- Ngược lại, số lớn hơn là b.
+- Bạn có thể dùng if để kiểm tra điều kiện a > b.
+- Nếu hai số bằng nhau, trả về a hay b đều được vì giá trị giống nhau.`,
+    tests: [
+      { expression: "max(3, 9)", expected: 9 },
+      { expression: "max(10, 2)", expected: 10 },
+      { expression: "max(5, 5)", expected: 5 },
+    ],
+  },
+{
+    id: "declaration-greet",
+    level: "Chuỗi",
+    title: "Nối chuỗi: sayHello",
+    type: "Chuỗi",
+    prompt:
+      "Bối cảnh: Một website muốn hiện lời chào riêng cho từng người dùng sau khi đăng nhập.\nYêu cầu: Tạo hàm sayHello với 1 tham số name.\nKết quả: Trả về chuỗi Xin chào, [name]!",
+    example: 'Kết quả mong muốn:\nsayHello("An") => "Xin chào, An!"',
+    hint: `Gợi ý:
+- Tạo hàm tên sayHello.
+- Hàm nhận 1 tham số name.
+- Kết quả là một chuỗi.
+- Cần ghép 3 phần: "Xin chào, " + name + "!".
+- Chú ý dấu cách sau dấu phẩy trong "Xin chào, ".`,
+    tests: [
+      { expression: 'sayHello("An")', expected: "Xin chào, An!" },
+      { expression: 'sayHello("Bình")', expected: "Xin chào, Bình!" },
+    ],
+  },
+{
+    id: "expression-first-char",
+    level: "Chuỗi",
+    title: "Lấy ký tự đầu: firstChar",
+    type: "Chuỗi",
+    prompt:
+      "Bối cảnh: Một app danh bạ muốn lấy chữ cái đầu tiên của tên để làm avatar mặc định.\nYêu cầu: Tạo hàm firstChar với 1 tham số text.\nKết quả: Trả về ký tự đầu tiên của text.",
+    example: 'Kết quả mong muốn:\nfirstChar("JavaScript") => "J"',
+    hint: `Gợi ý:
+- Tạo một hàm tên firstChar.
+- Chuỗi trong JavaScript có thể lấy ký tự theo vị trí.
+- Vị trí đầu tiên là 0, không phải 1.
+- Ký tự đầu tiên của text là text[0].`,
+    tests: [
+      { expression: 'firstChar("JavaScript")', expected: "J" },
+      { expression: 'firstChar("Code")', expected: "C" },
+    ],
+  },
+{
+    id: "expression-make-email",
+    level: "Chuỗi",
+    title: "Nối chuỗi: makeEmail",
+    type: "Chuỗi",
+    prompt:
+      "Bối cảnh: Một form đăng ký chỉ cho người dùng nhập tên tài khoản, hệ thống sẽ tự tạo email Gmail.\nYêu cầu: Tạo hàm makeEmail với 1 tham số username.\nKết quả: Trả về username cộng với @gmail.com.",
+    example: 'Kết quả mong muốn:\nmakeEmail("an") => "an@gmail.com"',
+    hint: `Gợi ý:
+- Tạo một hàm tên makeEmail.
+- Kết quả cần là chuỗi username ghép với "@gmail.com".
+- Dùng dấu + để nối chuỗi.
+- Không thêm dấu cách giữa username và @gmail.com.`,
+    tests: [
+      { expression: 'makeEmail("an")', expected: "an@gmail.com" },
+      { expression: 'makeEmail("binh")', expected: "binh@gmail.com" },
+    ],
+  },
+{
     id: "arrow-full-name",
-    level: "Arrow function",
-    title: "Hàm mũi tên: fullName",
-    type: "Hàm mũi tên",
+    level: "Chuỗi",
+    title: "Ghép chuỗi: fullName",
+    type: "Chuỗi",
     prompt:
-      "Tạo biến fullName bằng hàm mũi tên. Hàm nhận firstName và lastName, kết quả trả về là họ tên đầy đủ có một dấu cách ở giữa.",
+      "Bối cảnh: Một biểu mẫu lưu riêng họ và tên, nhưng màn hình hồ sơ cần hiển thị họ tên đầy đủ.\nYêu cầu: Tạo hàm fullName với 2 tham số firstName và lastName.\nKết quả: Trả về họ tên đầy đủ có một dấu cách ở giữa.",
     example: 'Kết quả mong muốn:\nfullName("An", "Nguyen") => "An Nguyen"',
-    hint: `const fullName = (firstName, lastName) => {\n  return firstName + " " + lastName;\n};`,
+    hint: `Gợi ý:
+- Tạo một hàm tên fullName.
+- Kết quả là ghép họ và tên.
+- Giữa firstName và lastName cần có một dấu cách.
+- Dấu cách đó là chuỗi " ".`,
     tests: [
       { expression: 'fullName("An", "Nguyen")', expected: "An Nguyen" },
       { expression: 'fullName("Minh", "Tran")', expected: "Minh Tran" },
     ],
   },
-  {
+{
     id: "arrow-is-empty",
-    level: "Arrow function",
-    title: "Hàm mũi tên: isEmpty",
-    type: "Hàm mũi tên",
+    level: "Chuỗi",
+    title: "Chuỗi rỗng: isEmpty",
+    type: "Chuỗi",
     prompt:
-      "Tạo biến isEmpty bằng hàm mũi tên. Hàm nhận tham số text, kết quả trả về là true nếu text là chuỗi rỗng.",
+      "Bối cảnh: Một form bình luận cần kiểm tra người dùng có để trống nội dung hay không trước khi gửi.\nYêu cầu: Tạo hàm isEmpty với 1 tham số text.\nKết quả: Trả về true nếu text là chuỗi rỗng.",
     example: 'Kết quả mong muốn:\nisEmpty("") => true\nisEmpty("JS") => false',
-    hint: `const isEmpty = (text) => {\n  return text === "";\n};`,
+    hint: `Gợi ý:
+- Tạo một hàm tên isEmpty.
+- Chuỗi rỗng được viết là "".
+- Cần kiểm tra text có bằng "" hay không.
+- Nên dùng === để so sánh chính xác.`,
     tests: [
       { expression: 'isEmpty("")', expected: true },
       { expression: 'isEmpty("JS")', expected: false },
       { expression: 'isEmpty(" ")', expected: false },
     ],
   },
-  {
-    id: "free-sum-array",
-    level: "Tự do",
-    title: "Tự do: sumArray",
-    type: "Bài tự do",
+{
+    id: "arrow-first-item",
+    level: "Mảng",
+    title: "Lấy phần tử đầu: getFirstItem",
+    type: "Mảng",
     prompt:
-      "Tạo hàm sumArray với 1 tham số numbers. Kết quả trả về là tổng tất cả số trong mảng.",
-    example: "Kết quả mong muốn:\nsumArray([1, 2, 3]) => 6\nsumArray([5, -2, 7]) => 10",
-    hint: `Bạn có thể viết bằng cách nào cũng được.\n\nVí dụ:\nfunction sumArray(numbers) {\n  let total = 0;\n\n  for (let number of numbers) {\n    total += number;\n  }\n\n  return total;\n}`,
+      "Bối cảnh: Một app tin tức muốn lấy bài viết đầu tiên trong danh sách để hiển thị nổi bật.\nYêu cầu: Tạo hàm getFirstItem với 1 tham số arr.\nKết quả: Trả về phần tử đầu tiên của arr.",
+    example: 'Kết quả mong muốn:\ngetFirstItem(["a", "b"]) => "a"',
+    hint: `Gợi ý:
+- Tạo một hàm tên getFirstItem.
+- arr là mảng.
+- Phần tử đầu tiên của mảng nằm ở vị trí 0.
+- Vì vậy hãy nghĩ tới arr[0].`,
     tests: [
-      { expression: "sumArray([1, 2, 3])", expected: 6 },
-      { expression: "sumArray([5, -2, 7])", expected: 10 },
-      { expression: "sumArray([])", expected: 0 },
+      { expression: 'getFirstItem(["a", "b"])', expected: "a" },
+      { expression: "getFirstItem([7, 8, 9])", expected: 7 },
     ],
   },
-  {
-    id: "free-count-vowels",
-    level: "Tự do",
-    title: "Tự do: countVowels",
-    type: "Bài tự do",
+{
+    id: "arrow-last-item",
+    level: "Mảng",
+    title: "Lấy phần tử cuối: getLastItem",
+    type: "Mảng",
     prompt:
-      "Tạo hàm countVowels với 1 tham số text. Kết quả trả về là số lượng nguyên âm a, e, i, o, u trong text.",
-    example: 'Kết quả mong muốn:\ncountVowels("hello") => 2\ncountVowels("javascript") => 3',
-    hint: `Bạn có thể dùng vòng lặp, includes, hoặc tách chuỗi thành mảng.\n\nGợi ý ý tưởng:\n- Tạo biến count = 0\n- Duyệt từng ký tự trong text\n- Nếu ký tự nằm trong "aeiou" thì tăng count\n- return count`,
+      "Bối cảnh: Một app chat muốn lấy tin nhắn mới nhất trong danh sách tin nhắn.\nYêu cầu: Tạo hàm getLastItem với 1 tham số arr.\nKết quả: Trả về phần tử cuối cùng của arr.",
+    example: "Kết quả mong muốn:\ngetLastItem([1, 2, 3]) => 3",
+    hint: `Gợi ý:
+- Tạo một hàm tên getLastItem.
+- arr.length là số lượng phần tử trong mảng.
+- Vị trí cuối cùng là arr.length - 1.
+- Lấy phần tử theo vị trí bằng cặp ngoặc vuông [].`,
     tests: [
-      { expression: 'countVowels("hello")', expected: 2 },
-      { expression: 'countVowels("javascript")', expected: 3 },
-      { expression: 'countVowels("sky")', expected: 0 },
+      { expression: "getLastItem([1, 2, 3])", expected: 3 },
+      { expression: 'getLastItem(["x", "y"])', expected: "y" },
     ],
   },
-  {
-    id: "free-reverse-text",
-    level: "Tự do",
-    title: "Tự do: reverseText",
-    type: "Bài tự do",
+{
+    id: "array-count-items",
+    level: "Mảng",
+    title: "Học về length: countItems",
+    type: "Mảng",
     prompt:
-      "Tạo hàm reverseText với 1 tham số text. Kết quả trả về là chuỗi bị đảo ngược.",
-    example: 'Kết quả mong muốn:\nreverseText("code") => "edoc"',
-    hint: `Một hướng làm:\n- Biến text thành mảng bằng split("")\n- Đảo mảng bằng reverse()\n- Ghép lại bằng join("")`,
+      "Bối cảnh: Một giỏ hàng cần hiển thị người dùng đã chọn bao nhiêu sản phẩm.\nYêu cầu: Tạo hàm countItems với 1 tham số arr.\nKết quả: Trả về số lượng phần tử trong mảng arr.",
+    example: "Kết quả mong muốn:\ncountItems([1, 2, 3]) => 3\ncountItems([]) => 0",
+    hint: `Gợi ý:
+- Mảng có thuộc tính length.
+- arr.length cho biết mảng có bao nhiêu phần tử.
+- Bài này không cần vòng lặp.
+- Chỉ cần trả về độ dài của arr.`,
     tests: [
-      { expression: 'reverseText("code")', expected: "edoc" },
-      { expression: 'reverseText("JavaScript")', expected: "tpircSavaJ" },
-      { expression: 'reverseText("")', expected: "" },
+      { expression: "countItems([1, 2, 3])", expected: 3 },
+      { expression: "countItems([])", expected: 0 },
+      { expression: 'countItems(["a", "b"])', expected: 2 },
     ],
   },
-  {
-    id: "free-find-longest-word",
-    level: "Tự do",
-    title: "Tự do: findLongestWord",
-    type: "Bài tự do",
+{
+    id: "array-has-item",
+    level: "Mảng",
+    title: "Học về includes: hasItem",
+    type: "Mảng",
     prompt:
-      "Tạo hàm findLongestWord với 1 tham số words. Kết quả trả về là từ dài nhất trong mảng.",
+      "Bối cảnh: Một danh sách mua sắm cần kiểm tra món hàng đã có trong danh sách chưa để tránh thêm trùng.\nYêu cầu: Tạo hàm hasItem với 2 tham số arr và item.\nKết quả: Trả về true nếu item có trong arr, ngược lại trả về false.",
+    example: 'Kết quả mong muốn:\nhasItem(["a", "b"], "b") => true\nhasItem([1, 2], 5) => false',
+    hint: `Gợi ý:
+- Mảng có phương thức includes.
+- includes dùng để kiểm tra một giá trị có nằm trong mảng hay không.
+- Kết quả của includes đã là true hoặc false.
+- Không cần tự viết if nếu bạn thấy chưa cần.`,
+    tests: [
+      { expression: 'hasItem(["a", "b"], "b")', expected: true },
+      { expression: "hasItem([1, 2], 5)", expected: false },
+      { expression: 'hasItem(["js"], "js")', expected: true },
+    ],
+  },
+{
+    id: "array-find-index",
+    level: "Mảng",
+    title: "Học về indexOf: findIndexOf",
+    type: "Mảng",
+    prompt:
+      "Bối cảnh: Một app playlist cần biết bài hát đang nằm ở vị trí thứ mấy trong danh sách phát.\nYêu cầu: Tạo hàm findIndexOf với 2 tham số arr và item.\nKết quả: Trả về vị trí của item trong arr; nếu không có thì trả về -1.",
     example:
-      'Kết quả mong muốn:\nfindLongestWord(["an", "javascript", "code"]) => "javascript"',
-    hint: `Một hướng làm:\n- Giả sử từ dài nhất ban đầu là words[0]\n- Duyệt từng từ trong words\n- Nếu từ hiện tại dài hơn từ đang lưu, cập nhật lại\n- return từ dài nhất`,
+      'Kết quả mong muốn:\nfindIndexOf(["a", "b", "c"], "b") => 1\nfindIndexOf([10, 20], 5) => -1',
+    hint: `Gợi ý:
+- Vị trí đầu tiên trong mảng là 0.
+- Mảng có phương thức indexOf.
+- indexOf trả về vị trí của phần tử nếu tìm thấy.
+- Nếu không tìm thấy, indexOf trả về -1.`,
     tests: [
-      {
-        expression: 'findLongestWord(["an", "javascript", "code"])',
-        expected: "javascript",
-      },
-      { expression: 'findLongestWord(["red", "blue", "green"])', expected: "green" },
-      { expression: 'findLongestWord(["a"])', expected: "a" },
+      { expression: 'findIndexOf(["a", "b", "c"], "b")', expected: 1 },
+      { expression: "findIndexOf([10, 20], 5)", expected: -1 },
+      { expression: 'findIndexOf(["x", "y"], "x")', expected: 0 },
     ],
   },
-  {
-    id: "free-format-money",
-    level: "Tự do",
-    title: "Tự do: formatMoney",
-    type: "Bài tự do",
+{
+    id: "array-get-even-numbers",
+    level: "Mảng",
+    title: "Học về push và lọc mảng: getEvenNumbers",
+    type: "Mảng",
     prompt:
-      "Tạo hàm formatMoney với 1 tham số amount. Kết quả trả về là chuỗi có dạng [amount] VND.",
-    example: 'Kết quả mong muốn:\nformatMoney(5000) => "5000 VND"',
-    hint: `Chỉ cần ghép amount với chuỗi " VND".\n\nBạn có thể dùng nối chuỗi hoặc template literal.`,
+      "Bối cảnh: Một trò chơi cần lọc ra các mã phòng số chẵn để chia vào nhóm A.\nYêu cầu: Tạo hàm getEvenNumbers với 1 tham số numbers.\nKết quả: Trả về một mảng mới chỉ gồm các số chẵn trong numbers.",
+    example:
+      "Kết quả mong muốn:\ngetEvenNumbers([1, 2, 3, 4]) => [2, 4]\ngetEvenNumbers([1, 3]) => []",
+    hint: `Gợi ý:
+- Cần tạo một mảng rỗng để chứa kết quả.
+- Duyệt từng số trong numbers.
+- Số chẵn là số chia cho 2 dư 0.
+- Nếu số hiện tại là số chẵn, thêm nó vào mảng kết quả.
+- Có thể dùng push để thêm phần tử vào mảng.`,
     tests: [
-      { expression: "formatMoney(5000)", expected: "5000 VND" },
-      { expression: "formatMoney(0)", expected: "0 VND" },
-      { expression: "formatMoney(125000)", expected: "125000 VND" },
+      { expression: "getEvenNumbers([1, 2, 3, 4])", expected: [2, 4] },
+      { expression: "getEvenNumbers([1, 3])", expected: [] },
+      { expression: "getEvenNumbers([0, 6, 7])", expected: [0, 6] },
     ],
   },
-  {
+{
+    id: "array-double-numbers",
+    level: "Mảng",
+    title: "Học về tạo mảng mới: doubleNumbers",
+    type: "Mảng",
+    prompt:
+      "Bối cảnh: Một hệ thống khuyến mãi muốn nhân đôi toàn bộ điểm thưởng của khách hàng trong một sự kiện.\nYêu cầu: Tạo hàm doubleNumbers với 1 tham số numbers.\nKết quả: Trả về một mảng mới, trong đó mỗi số được nhân đôi.",
+    example:
+      "Kết quả mong muốn:\ndoubleNumbers([1, 2, 3]) => [2, 4, 6]\ndoubleNumbers([]) => []",
+    hint: `Gợi ý:
+- Cần tạo một mảng rỗng để chứa kết quả.
+- Duyệt từng số trong numbers.
+- Với mỗi số, lấy số đó nhân 2.
+- Thêm kết quả nhân đôi vào mảng mới.
+- Cuối cùng return mảng mới.`,
+    tests: [
+      { expression: "doubleNumbers([1, 2, 3])", expected: [2, 4, 6] },
+      { expression: "doubleNumbers([])", expected: [] },
+      { expression: "doubleNumbers([-1, 5])", expected: [-2, 10] },
+    ],
+  },
+{
     id: "object-method-toi",
     level: "Object method",
-    title: "Object method: toi.chao",
+    title: "Học về this: toi.chao",
     type: "Object method và this",
     prompt:
-      'Tạo object toi có thuộc tính ten, tuoi và phương thức chao. Khi gọi toi.chao(), phương thức này in ra câu "Xin chào, tôi là Nam, năm nay tôi 20 tuổi."',
+      'Bối cảnh: Bạn muốn tạo một hồ sơ cá nhân nhỏ, trong đó object có thể tự giới thiệu chính nó.\nYêu cầu: Tạo object toi có thuộc tính ten, tuoi và phương thức chao.\nKết quả: Khi gọi toi.chao(), phương thức này in ra câu "Xin chào, tôi là Nam, năm nay tôi 20 tuổi."',
     example:
       'Kết quả mong muốn:\ntoi.chao() in ra "Xin chào, tôi là Nam, năm nay tôi 20 tuổi."',
-    hint: `const toi = {\n  ten: "Nam",\n  tuoi: 20,\n  chao: function() {\n    console.log("Xin chào, tôi là " + this.ten + ", năm nay tôi " + this.tuoi + " tuổi.");\n  }\n};`,
+    hint: `Gợi ý:
+- Tạo object tên toi.
+- Object cần có thuộc tính ten và tuoi đúng như đề bài.
+- Thêm phương thức chao vào object.
+- Trong phương thức chao, dùng console.log để in câu yêu cầu.
+- Dùng this.ten và this.tuoi để lấy dữ liệu của chính object toi.`,
     tests: [
       { expression: "toi.ten", expected: "Nam" },
       { expression: "toi.tuoi", expected: 20 },
@@ -316,16 +407,21 @@ const exercises = [
       },
     ],
   },
-  {
+{
     id: "object-method-car",
     level: "Object method",
-    title: "Object method: chiecXe.gioiThieu",
+    title: "Học về this: chiecXe.gioiThieu",
     type: "Object method và this",
     prompt:
-      'Tạo object chiecXe có thuộc tính ten, mau và phương thức gioiThieu. Khi gọi chiecXe.gioiThieu(), phương thức này in ra câu "Đây là xe VinFast VF8 màu Đỏ."',
+      'Bối cảnh: Một trang bán xe cần mỗi chiếc xe tự in ra thông tin giới thiệu của nó.\nYêu cầu: Tạo object chiecXe có thuộc tính ten, mau và phương thức gioiThieu.\nKết quả: Khi gọi chiecXe.gioiThieu(), phương thức này in ra câu "Đây là xe VinFast VF8 màu Đỏ."',
     example:
       'Kết quả mong muốn:\nchiecXe.gioiThieu() in ra "Đây là xe VinFast VF8 màu Đỏ."',
-    hint: `const chiecXe = {\n  ten: "VinFast VF8",\n  mau: "Đỏ",\n  gioiThieu: function() {\n    console.log("Đây là xe " + this.ten + " màu " + this.mau + ".");\n  }\n};`,
+    hint: `Gợi ý:
+- Tạo object tên chiecXe.
+- Object cần có thuộc tính ten và mau.
+- Thêm phương thức gioiThieu.
+- Khi method nằm trong object, this trỏ về object đang gọi method.
+- Ghép this.ten và this.mau vào câu cần in.`,
     tests: [
       { expression: "chiecXe.ten", expected: "VinFast VF8" },
       { expression: "chiecXe.mau", expected: "Đỏ" },
@@ -335,31 +431,41 @@ const exercises = [
       },
     ],
   },
-  {
+{
     id: "object-method-student",
     level: "Object method",
-    title: "Object method: hocSinh.thongTin",
+    title: "Học về this: hocSinh.thongTin",
     type: "Object method và this",
     prompt:
-      'Tạo object hocSinh có thuộc tính ten, lop và phương thức thongTin. Khi gọi hocSinh.thongTin(), phương thức này in ra câu "Lan học lớp 10A."',
+      'Bối cảnh: Một hệ thống quản lý lớp học cần mỗi học sinh tự hiển thị thông tin ngắn gọn.\nYêu cầu: Tạo object hocSinh có thuộc tính ten, lop và phương thức thongTin.\nKết quả: Khi gọi hocSinh.thongTin(), phương thức này in ra câu "Lan học lớp 10A."',
     example: 'Kết quả mong muốn:\nhocSinh.thongTin() in ra "Lan học lớp 10A."',
-    hint: `const hocSinh = {\n  ten: "Lan",\n  lop: "10A",\n  thongTin: function() {\n    console.log(this.ten + " học lớp " + this.lop + ".");\n  }\n};`,
+    hint: `Gợi ý:
+- Tạo object tên hocSinh.
+- Object cần có thuộc tính ten và lop.
+- Thêm phương thức thongTin.
+- Trong method, dùng this.ten để lấy tên và this.lop để lấy lớp.
+- Kết quả cần được in bằng console.log.`,
     tests: [
       { expression: "hocSinh.ten", expected: "Lan" },
       { expression: "hocSinh.lop", expected: "10A" },
       { expression: "hocSinh.thongTin(); __logs[0]", expected: "Lan học lớp 10A." },
     ],
   },
-  {
+{
     id: "object-method-product",
     level: "Object method",
-    title: "Object method: sanPham.hienThi",
+    title: "Học về this: sanPham.hienThi",
     type: "Object method và this",
     prompt:
-      'Tạo object sanPham có thuộc tính ten, gia và phương thức hienThi. Khi gọi sanPham.hienThi(), phương thức này in ra câu "Áo thun có giá 150000 VND."',
+      'Bối cảnh: Một cửa hàng online cần mỗi sản phẩm tự hiển thị tên và giá của nó.\nYêu cầu: Tạo object sanPham có thuộc tính ten, gia và phương thức hienThi.\nKết quả: Khi gọi sanPham.hienThi(), phương thức này in ra câu "Áo thun có giá 150000 VND."',
     example:
       'Kết quả mong muốn:\nsanPham.hienThi() in ra "Áo thun có giá 150000 VND."',
-    hint: `const sanPham = {\n  ten: "Áo thun",\n  gia: 150000,\n  hienThi: function() {\n    console.log(this.ten + " có giá " + this.gia + " VND.");\n  }\n};`,
+    hint: `Gợi ý:
+- Tạo object tên sanPham.
+- Object cần có thuộc tính ten và gia.
+- Thêm phương thức hienThi.
+- Trong method, lấy dữ liệu bằng this.ten và this.gia.
+- Chú ý câu in ra có thêm " VND." ở cuối.`,
     tests: [
       { expression: "sanPham.ten", expected: "Áo thun" },
       { expression: "sanPham.gia", expected: 150000 },
@@ -369,16 +475,21 @@ const exercises = [
       },
     ],
   },
-  {
+{
     id: "object-method-account",
     level: "Object method",
-    title: "Object method: taiKhoan.thongBao",
+    title: "Học về this: taiKhoan.thongBao",
     type: "Object method và this",
     prompt:
-      'Tạo object taiKhoan có thuộc tính tenDangNhap, soDu và phương thức thongBao. Khi gọi taiKhoan.thongBao(), phương thức này in ra câu "Tài khoản user01 còn 500000 VND."',
+      'Bối cảnh: Một app ví điện tử cần tài khoản tự hiển thị thông báo số dư hiện tại.\nYêu cầu: Tạo object taiKhoan có thuộc tính tenDangNhap, soDu và phương thức thongBao.\nKết quả: Khi gọi taiKhoan.thongBao(), phương thức này in ra câu "Tài khoản user01 còn 500000 VND."',
     example:
       'Kết quả mong muốn:\ntaiKhoan.thongBao() in ra "Tài khoản user01 còn 500000 VND."',
-    hint: `const taiKhoan = {\n  tenDangNhap: "user01",\n  soDu: 500000,\n  thongBao: function() {\n    console.log("Tài khoản " + this.tenDangNhap + " còn " + this.soDu + " VND.");\n  }\n};`,
+    hint: `Gợi ý:
+- Tạo object tên taiKhoan.
+- Object cần có thuộc tính tenDangNhap và soDu.
+- Thêm phương thức thongBao.
+- Dùng this.tenDangNhap và this.soDu trong method.
+- Kết quả cần được in bằng console.log, không phải return.`,
     tests: [
       { expression: "taiKhoan.tenDangNhap", expected: "user01" },
       { expression: "taiKhoan.soDu", expected: 500000 },
@@ -388,7 +499,302 @@ const exercises = [
       },
     ],
   },
+{
+    id: "free-sum-array",
+    level: "Tự do",
+    title: "Tự do tổng hợp: sumArray",
+    type: "Bài tự do",
+    prompt:
+      "Bối cảnh: Một lớp học muốn tính tổng điểm của một học sinh qua nhiều bài kiểm tra.\nYêu cầu: Tạo hàm sumArray với 1 tham số numbers.\nKết quả: Trả về tổng tất cả số trong mảng.",
+    example: "Kết quả mong muốn:\nsumArray([1, 2, 3]) => 6\nsumArray([5, -2, 7]) => 10",
+    hint: `Mục tiêu: cộng tất cả số trong mảng numbers.
+
+Cách nghĩ chậm rãi:
+1. Muốn cộng nhiều số, mình cần một biến để giữ tổng tạm thời.
+2. Ban đầu chưa cộng gì nên tổng là 0.
+3. Duyệt từng số trong mảng numbers.
+4. Mỗi lần gặp một số, cộng số đó vào tổng.
+5. Sau khi duyệt xong, return tổng.
+
+Ghi nhớ:
+- for...of dùng để lấy từng phần tử trong mảng.
+- total = total + number nghĩa là lấy tổng cũ cộng thêm số hiện tại.`,
+    tests: [
+      { expression: "sumArray([1, 2, 3])", expected: 6 },
+      { expression: "sumArray([5, -2, 7])", expected: 10 },
+      { expression: "sumArray([])", expected: 0 },
+    ],
+  },
+{
+    id: "free-count-vowels",
+    level: "Tự do",
+    title: "Tự do tổng hợp: countVowels",
+    type: "Bài tự do",
+    prompt:
+      "Bối cảnh: Một app luyện phát âm muốn đếm số nguyên âm trong một từ tiếng Anh để phân tích cách đọc.\nYêu cầu: Tạo hàm countVowels với 1 tham số text.\nKết quả: Trả về số lượng nguyên âm a, e, i, o, u trong text.",
+    example: 'Kết quả mong muốn:\ncountVowels("hello") => 2\ncountVowels("javascript") => 3',
+    hint: `Mục tiêu: đếm xem trong text có bao nhiêu ký tự là a, e, i, o, u.
+
+Cách nghĩ chậm rãi:
+1. Cần một biến count để đếm số nguyên âm.
+2. Ban đầu chưa thấy nguyên âm nào nên count = 0.
+3. Tạo chuỗi vowels = "aeiou" để lưu các nguyên âm cần kiểm tra.
+4. Duyệt từng ký tự trong text.
+5. Nếu vowels.includes(char) là true, tăng count lên 1.
+6. Cuối cùng return count.
+
+Ghi nhớ:
+- includes dùng để hỏi: chuỗi này có chứa ký tự kia không?
+- "aeiou".includes("e") trả về true.
+- "aeiou".includes("x") trả về false.`,
+    tests: [
+      { expression: 'countVowels("hello")', expected: 2 },
+      { expression: 'countVowels("javascript")', expected: 3 },
+      { expression: 'countVowels("sky")', expected: 0 },
+    ],
+  },
+{
+    id: "free-reverse-text",
+    level: "Tự do",
+    title: "Tự do tổng hợp: reverseText",
+    type: "Bài tự do",
+    prompt:
+      "Bối cảnh: Một trò chơi chữ cần đảo ngược từ người chơi nhập vào để tạo câu đố.\nYêu cầu: Tạo hàm reverseText với 1 tham số text.\nKết quả: Trả về chuỗi bị đảo ngược.",
+    example: 'Kết quả mong muốn:\nreverseText("code") => "edoc"',
+    hint: `Mục tiêu: đảo ngược thứ tự các ký tự trong text.
+
+Cách dễ nhất là dùng 3 bước có sẵn của JavaScript:
+1. text.split("") biến chuỗi thành mảng ký tự.
+2. reverse() đảo ngược mảng.
+3. join("") ghép mảng lại thành chuỗi.
+
+Ví dụ:
+"code"
+split("")  -> ["c", "o", "d", "e"]
+reverse()  -> ["e", "d", "o", "c"]
+join("")   -> "edoc"
+
+Gợi ý cách viết:
+- Bạn có thể làm từng bước bằng biến trung gian.
+- Hoặc nối 3 thao tác split, reverse, join trên cùng một dòng.
+- Nhớ return chuỗi sau khi đã ghép lại.`,
+    tests: [
+      { expression: 'reverseText("code")', expected: "edoc" },
+      { expression: 'reverseText("JavaScript")', expected: "tpircSavaJ" },
+      { expression: 'reverseText("")', expected: "" },
+    ],
+  },
+{
+    id: "free-find-longest-word",
+    level: "Tự do",
+    title: "Tự do tổng hợp: findLongestWord",
+    type: "Bài tự do",
+    prompt:
+      "Bối cảnh: Một công cụ phân tích văn bản muốn tìm từ dài nhất trong một danh sách từ.\nYêu cầu: Tạo hàm findLongestWord với 1 tham số words.\nKết quả: Trả về từ dài nhất trong mảng.",
+    example:
+      'Kết quả mong muốn:\nfindLongestWord(["an", "javascript", "code"]) => "javascript"',
+    hint: `Mục tiêu: tìm từ có độ dài lớn nhất trong mảng words.
+
+Cách nghĩ chậm rãi:
+1. Mình cần một biến để nhớ từ dài nhất hiện tại.
+2. Lúc đầu, cứ tạm coi từ đầu tiên là dài nhất: words[0].
+3. Duyệt từng từ trong mảng.
+4. So sánh độ dài của từ hiện tại với từ dài nhất đang lưu.
+5. Nếu từ hiện tại dài hơn, cập nhật lại biến longest.
+6. Duyệt xong thì return longest.
+
+Ghi nhớ:
+- word.length là số ký tự của word.
+- longest luôn giữ từ dài nhất mình tìm được cho tới thời điểm hiện tại.`,
+    tests: [
+      {
+        expression: 'findLongestWord(["an", "javascript", "code"])',
+        expected: "javascript",
+      },
+      { expression: 'findLongestWord(["red", "blue", "green"])', expected: "green" },
+      { expression: 'findLongestWord(["a"])', expected: "a" },
+    ],
+  },
+{
+    id: "free-format-money",
+    level: "Tự do",
+    title: "Tự do tổng hợp: formatMoney",
+    type: "Bài tự do",
+    prompt:
+      "Bối cảnh: Một màn hình thanh toán cần hiển thị số tiền kèm đơn vị tiền tệ cho dễ đọc.\nYêu cầu: Tạo hàm formatMoney với 1 tham số amount.\nKết quả: Trả về chuỗi có dạng [amount] VND.",
+    example: 'Kết quả mong muốn:\nformatMoney(5000) => "5000 VND"',
+    hint: `Mục tiêu: biến số amount thành chuỗi có dạng "[amount] VND".
+
+Cách nghĩ chậm rãi:
+1. amount là số, ví dụ 5000.
+2. Kết quả cần là chuỗi "5000 VND".
+3. Vậy chỉ cần ghép amount với chuỗi " VND".
+4. Nhớ có dấu cách trước VND.
+
+Ghi nhớ:
+- " VND" có dấu cách ở đầu.
+- Có thể dùng dấu + hoặc template literal để ghép chuỗi.
+- Nếu thiếu dấu cách, kết quả sẽ thành "5000VND" và bài sẽ sai.`,
+    tests: [
+      { expression: "formatMoney(5000)", expected: "5000 VND" },
+      { expression: "formatMoney(0)", expected: "0 VND" },
+      { expression: "formatMoney(125000)", expected: "125000 VND" },
+    ],
+  }
 ];
+const exerciseSolutions = {
+  "declaration-add": `function add(a, b) {
+  return a + b;
+}`,
+  "declaration-subtract": `function subtract(a, b) {
+  return a - b;
+}`,
+  "declaration-greet": `function sayHello(name) {
+  return "Xin chào, " + name + "!";
+}`,
+  "declaration-is-even": `function isEven(n) {
+  return n % 2 === 0;
+}`,
+  "declaration-max": `function max(a, b) {
+  if (a > b) {
+    return a;
+  }
+
+  return b;
+}`,
+  "expression-square": `const square = function(n) {
+  return n * n;
+};`,
+  "expression-is-adult": `const isAdult = function(age) {
+  return age >= 18;
+};`,
+  "expression-first-char": `const firstChar = function(text) {
+  return text[0];
+};`,
+  "expression-total-price": `const totalPrice = function(price, quantity) {
+  return price * quantity;
+};`,
+  "expression-make-email": `const makeEmail = function(username) {
+  return username + "@gmail.com";
+};`,
+  "arrow-double": `const double = (n) => {
+  return n * 2;
+};`,
+  "arrow-first-item": `const getFirstItem = (arr) => {
+  return arr[0];
+};`,
+  "arrow-last-item": `const getLastItem = (arr) => {
+  return arr[arr.length - 1];
+};`,
+  "arrow-full-name": `const fullName = (firstName, lastName) => {
+  return firstName + " " + lastName;
+};`,
+  "arrow-is-empty": `const isEmpty = (text) => {
+  return text === "";
+};`,
+  "array-count-items": `function countItems(arr) {
+  return arr.length;
+}`,
+  "array-has-item": `function hasItem(arr, item) {
+  return arr.includes(item);
+}`,
+  "array-find-index": `function findIndexOf(arr, item) {
+  return arr.indexOf(item);
+}`,
+  "array-get-even-numbers": `function getEvenNumbers(numbers) {
+  const result = [];
+
+  for (let number of numbers) {
+    if (number % 2 === 0) {
+      result.push(number);
+    }
+  }
+
+  return result;
+}`,
+  "array-double-numbers": `function doubleNumbers(numbers) {
+  const result = [];
+
+  for (let number of numbers) {
+    result.push(number * 2);
+  }
+
+  return result;
+}`,
+  "free-sum-array": `function sumArray(numbers) {
+  let total = 0;
+
+  for (let number of numbers) {
+    total = total + number;
+  }
+
+  return total;
+}`,
+  "free-count-vowels": `function countVowels(text) {
+  let count = 0;
+  const vowels = "aeiou";
+
+  for (let char of text) {
+    if (vowels.includes(char)) {
+      count = count + 1;
+    }
+  }
+
+  return count;
+}`,
+  "free-reverse-text": `function reverseText(text) {
+  return text.split("").reverse().join("");
+}`,
+  "free-find-longest-word": `function findLongestWord(words) {
+  let longest = words[0];
+
+  for (let word of words) {
+    if (word.length > longest.length) {
+      longest = word;
+    }
+  }
+
+  return longest;
+}`,
+  "free-format-money": `function formatMoney(amount) {
+  return amount + " VND";
+}`,
+  "object-method-toi": `const toi = {
+  ten: "Nam",
+  tuoi: 20,
+  chao: function() {
+    console.log("Xin chào, tôi là " + this.ten + ", năm nay tôi " + this.tuoi + " tuổi.");
+  }
+};`,
+  "object-method-car": `const chiecXe = {
+  ten: "VinFast VF8",
+  mau: "Đỏ",
+  gioiThieu: function() {
+    console.log("Đây là xe " + this.ten + " màu " + this.mau + ".");
+  }
+};`,
+  "object-method-student": `const hocSinh = {
+  ten: "Lan",
+  lop: "10A",
+  thongTin: function() {
+    console.log(this.ten + " học lớp " + this.lop + ".");
+  }
+};`,
+  "object-method-product": `const sanPham = {
+  ten: "Áo thun",
+  gia: 150000,
+  hienThi: function() {
+    console.log(this.ten + " có giá " + this.gia + " VND.");
+  }
+};`,
+  "object-method-account": `const taiKhoan = {
+  tenDangNhap: "user01",
+  soDu: 500000,
+  thongBao: function() {
+    console.log("Tài khoản " + this.tenDangNhap + " còn " + this.soDu + " VND.");
+  }
+};`,
+};
 
 const syntaxRules = {
   "declaration-add": { kind: "declaration", name: "add", params: ["a", "b"] },
@@ -411,6 +817,12 @@ const syntaxRules = {
   "arrow-full-name": { kind: "arrow", name: "fullName", params: ["firstName", "lastName"] },
   "arrow-is-empty": { kind: "arrow", name: "isEmpty", params: ["text"] },
 };
+
+if (window.basicCurriculumExercises && window.basicCurriculumSolutions) {
+  exercises.splice(0, exercises.length, ...window.basicCurriculumExercises);
+  Object.keys(exerciseSolutions).forEach((key) => delete exerciseSolutions[key]);
+  Object.assign(exerciseSolutions, window.basicCurriculumSolutions);
+}
 
 const notebookArticles = [
   {
@@ -573,10 +985,21 @@ const state = {
   answers: new Map(),
   passed: new Set(JSON.parse(localStorage.getItem("functionGymPassed") || "[]")),
   hintOpen: false,
-  openGroups: new Set(["Khai báo hàm"]),
+  solutionOpen: false,
+  openGroups: new Set(["Biến"]),
   singleGroupMode: localStorage.getItem("functionGymSingleGroupMode") !== "false",
   currentNotebookId: notebookArticles[0].id,
+  currentMode: "exercise",
 };
+
+const exerciseGroupOrder = [
+  "Biến",
+  "If Else",
+  "Loop",
+  "Function",
+  "Array",
+  "Object",
+];
 
 const exerciseList = document.querySelector("#exerciseList");
 const exerciseLevel = document.querySelector("#exerciseLevel");
@@ -584,30 +1007,68 @@ const exerciseTitle = document.querySelector("#exerciseTitle");
 const exercisePrompt = document.querySelector("#exercisePrompt");
 const exampleBox = document.querySelector("#exampleBox");
 const hintBox = document.querySelector("#hintBox");
+const solutionBox = document.querySelector("#solutionBox");
 const codeEditor = document.querySelector("#codeEditor");
+const playgroundEditor = document.querySelector("#playgroundEditor");
 const outputBox = document.querySelector("#outputBox");
+const playgroundConsole = document.querySelector("#playgroundConsole");
 const testSummary = document.querySelector("#testSummary");
+const playgroundStatus = document.querySelector("#playgroundStatus");
 const statusPill = document.querySelector("#statusPill");
 const progressText = document.querySelector("#progressText");
 const progressBar = document.querySelector("#progressBar");
 const runBtn = document.querySelector("#runBtn");
 const resetBtn = document.querySelector("#resetBtn");
 const hintBtn = document.querySelector("#hintBtn");
+const solutionBtn = document.querySelector("#solutionBtn");
+const runPlaygroundBtn = document.querySelector("#runPlaygroundBtn");
+const clearPlaygroundBtn = document.querySelector("#clearPlaygroundBtn");
 const resetAllBtn = document.querySelector("#resetAllBtn");
 const singleGroupToggle = document.querySelector("#singleGroupToggle");
 const toggleAllGroupsBtn = document.querySelector("#toggleAllGroupsBtn");
+const exerciseModeBtn = document.querySelector("#exerciseModeBtn");
+const playgroundModeBtn = document.querySelector("#playgroundModeBtn");
 const notebookBtn = document.querySelector("#notebookBtn");
-const notebookOverlay = document.querySelector("#notebookOverlay");
+const exerciseSidebarTools = document.querySelector("#exerciseSidebarTools");
+const exerciseView = document.querySelector("#exerciseView");
+const playgroundView = document.querySelector("#playgroundView");
+const notebookView = document.querySelector("#notebookView");
 const notebookList = document.querySelector("#notebookList");
 const notebookContent = document.querySelector("#notebookContent");
 const closeNotebookBtn = document.querySelector("#closeNotebookBtn");
 
+function setMode(mode) {
+  state.currentMode = mode;
+
+  exerciseView.hidden = mode !== "exercise";
+  playgroundView.hidden = mode !== "playground";
+  notebookView.hidden = mode !== "notebook";
+  exerciseSidebarTools.hidden = mode !== "exercise";
+  exerciseList.hidden = mode !== "exercise";
+
+  exerciseModeBtn.classList.toggle("active", mode === "exercise");
+  playgroundModeBtn.classList.toggle("active", mode === "playground");
+  notebookBtn.classList.toggle("active", mode === "notebook");
+
+  if (mode === "notebook") renderNotebook();
+}
+
 function getExerciseGroups() {
-  return exercises.reduce((result, exercise, index) => {
+  const groups = exercises.reduce((result, exercise, index) => {
     if (!result.has(exercise.type)) result.set(exercise.type, []);
     result.get(exercise.type).push({ exercise, index });
     return result;
   }, new Map());
+
+  return new Map(
+    [...groups.entries()].sort(([groupA], [groupB]) => {
+      const indexA = exerciseGroupOrder.indexOf(groupA);
+      const indexB = exerciseGroupOrder.indexOf(groupB);
+      const orderA = indexA === -1 ? Number.MAX_SAFE_INTEGER : indexA;
+      const orderB = indexB === -1 ? Number.MAX_SAFE_INTEGER : indexB;
+      return orderA - orderB;
+    })
+  );
 }
 
 function getCurrentGroupName() {
@@ -688,12 +1149,11 @@ function renderNotebook() {
 }
 
 function openNotebook() {
-  renderNotebook();
-  notebookOverlay.hidden = false;
+  setMode("notebook");
 }
 
 function closeNotebook() {
-  notebookOverlay.hidden = true;
+  setMode("exercise");
 }
 
 function renderExerciseList() {
@@ -755,6 +1215,7 @@ function renderExerciseList() {
             state.openGroups.add(exercise.type);
           }
           state.hintOpen = false;
+          state.solutionOpen = false;
           renderCurrentExercise();
         });
 
@@ -851,8 +1312,11 @@ function renderCurrentExercise() {
   renderHighlightedPrompt(exercise);
   exampleBox.textContent = exercise.example;
   hintBox.textContent = exercise.hint;
+  solutionBox.textContent = exerciseSolutions[exercise.id] || "";
   hintBox.hidden = !state.hintOpen;
+  solutionBox.hidden = !state.solutionOpen;
   hintBtn.textContent = state.hintOpen ? "Ẩn hint" : "Hint";
+  solutionBtn.textContent = state.solutionOpen ? "Ẩn lời giải" : "Lời giải";
   codeEditor.value = state.answers.get(exercise.id) || "";
   outputBox.innerHTML =
     '<p class="result-line warn">Hãy viết code rồi bấm Chạy code.</p>';
@@ -912,12 +1376,53 @@ function runUserCode(userCode, expression) {
 }
 
 function valuesEqual(actual, expected) {
-  return Object.is(actual, expected);
+  if (Object.is(actual, expected)) return true;
+
+  if (actual && expected && typeof actual === "object" && typeof expected === "object") {
+    try {
+      return JSON.stringify(actual) === JSON.stringify(expected);
+    } catch (error) {
+      return false;
+    }
+  }
+
+  return false;
 }
 
 function formatValue(value) {
   if (typeof value === "string") return `"${value}"`;
   return JSON.stringify(value);
+}
+
+function formatConsoleValue(value) {
+  if (typeof value === "string") return value;
+  if (typeof value === "undefined") return "undefined";
+  if (typeof value === "function") return value.toString();
+
+  try {
+    return JSON.stringify(value, null, 2);
+  } catch (error) {
+    return String(value);
+  }
+}
+
+function renderConsoleLines(lines) {
+  playgroundConsole.innerHTML = "";
+
+  if (lines.length === 0) {
+    const emptyLine = document.createElement("p");
+    emptyLine.className = "console-line warn";
+    emptyLine.textContent = "Code đã chạy xong, nhưng chưa có gì được in ra console.";
+    playgroundConsole.appendChild(emptyLine);
+    return;
+  }
+
+  lines.forEach((line) => {
+    const item = document.createElement("p");
+    item.className = `console-line ${line.type}`;
+    item.textContent = line.text;
+    playgroundConsole.appendChild(item);
+  });
 }
 
 function escapeRegExp(text) {
@@ -1050,6 +1555,7 @@ function resetAllExercises() {
   state.answers.clear();
   state.passed.clear();
   state.hintOpen = false;
+  state.solutionOpen = false;
   localStorage.removeItem("functionGymPassed");
   codeEditor.value = "";
   outputBox.innerHTML = '<p class="result-line warn">Đã reset toàn bộ bài tập.</p>';
@@ -1099,18 +1605,86 @@ function toggleHint() {
   hintBtn.textContent = state.hintOpen ? "Ẩn hint" : "Hint";
 }
 
+function toggleSolution() {
+  saveCurrentAnswer();
+  state.solutionOpen = !state.solutionOpen;
+  solutionBox.hidden = !state.solutionOpen;
+  solutionBtn.textContent = state.solutionOpen ? "Ẩn lời giải" : "Lời giải";
+}
+
+function runPlayground() {
+  const code = playgroundEditor.value.trim();
+  localStorage.setItem("functionGymPlaygroundCode", playgroundEditor.value);
+
+  if (!code) {
+    playgroundStatus.textContent = "Chưa có code";
+    renderConsoleLines([{ type: "warn", text: "Hãy viết code rồi bấm Chạy thử." }]);
+    return;
+  }
+
+  const lines = [];
+  const sandboxConsole = {
+    log: (...values) => {
+      lines.push({ type: "log", text: values.map(formatConsoleValue).join(" ") });
+    },
+    warn: (...values) => {
+      lines.push({ type: "warn", text: values.map(formatConsoleValue).join(" ") });
+    },
+    error: (...values) => {
+      lines.push({ type: "error", text: values.map(formatConsoleValue).join(" ") });
+    },
+  };
+
+  try {
+    const runner = new Function("console", `"use strict";\n${playgroundEditor.value}`);
+    const result = runner(sandboxConsole);
+
+    if (typeof result !== "undefined") {
+      lines.push({ type: "return", text: `=> ${formatConsoleValue(result)}` });
+    }
+
+    playgroundStatus.textContent = "Đã chạy";
+    renderConsoleLines(lines);
+  } catch (error) {
+    playgroundStatus.textContent = "Có lỗi";
+    lines.push({ type: "error", text: `${error.name}: ${error.message}` });
+    renderConsoleLines(lines);
+  }
+}
+
+function clearPlayground() {
+  playgroundEditor.value = "";
+  localStorage.removeItem("functionGymPlaygroundCode");
+  playgroundStatus.textContent = "Đã xóa";
+  renderConsoleLines([{ type: "warn", text: "Console đã được xóa." }]);
+}
+
+playgroundEditor.value =
+  localStorage.getItem("functionGymPlaygroundCode") ||
+  `function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3));`;
+
 runBtn.addEventListener("click", runTests);
 resetBtn.addEventListener("click", resetCurrentExercise);
 hintBtn.addEventListener("click", toggleHint);
+solutionBtn.addEventListener("click", toggleSolution);
+runPlaygroundBtn.addEventListener("click", runPlayground);
+clearPlaygroundBtn.addEventListener("click", clearPlayground);
 resetAllBtn.addEventListener("click", resetAllExercises);
 singleGroupToggle.addEventListener("change", () => {
   setSingleGroupMode(singleGroupToggle.checked);
 });
 toggleAllGroupsBtn.addEventListener("click", toggleAllGroups);
+exerciseModeBtn.addEventListener("click", () => setMode("exercise"));
+playgroundModeBtn.addEventListener("click", () => setMode("playground"));
 notebookBtn.addEventListener("click", openNotebook);
 closeNotebookBtn.addEventListener("click", closeNotebook);
-notebookOverlay.addEventListener("click", (event) => {
-  if (event.target === notebookOverlay) closeNotebook();
+
+playgroundEditor.addEventListener("input", () => {
+  localStorage.setItem("functionGymPlaygroundCode", playgroundEditor.value);
 });
 
 codeEditor.addEventListener("keydown", (event) => {
@@ -1129,10 +1703,28 @@ codeEditor.addEventListener("keydown", (event) => {
   }
 });
 
+playgroundEditor.addEventListener("keydown", (event) => {
+  if (event.key === "Tab") {
+    event.preventDefault();
+    const start = playgroundEditor.selectionStart;
+    const end = playgroundEditor.selectionEnd;
+    playgroundEditor.value =
+      playgroundEditor.value.slice(0, start) + "  " + playgroundEditor.value.slice(end);
+    playgroundEditor.selectionStart = playgroundEditor.selectionEnd = start + 2;
+    localStorage.setItem("functionGymPlaygroundCode", playgroundEditor.value);
+  }
+
+  if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+    event.preventDefault();
+    runPlayground();
+  }
+});
+
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !notebookOverlay.hidden) {
+  if (event.key === "Escape" && state.currentMode === "notebook") {
     closeNotebook();
   }
 });
 
+setMode("exercise");
 renderCurrentExercise();
