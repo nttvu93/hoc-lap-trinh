@@ -978,6 +978,495 @@ toi.chao();`,
       { type: "p", text: "Trong dòng toi.chao(), object đứng trước dấu chấm là toi. Vì vậy bên trong chao, this chính là toi." },
     ],
   },
+  {
+    id: "for-loop-foundation",
+    title: "Mức 4: Hiểu vòng lặp for",
+    meta: "Nền tảng: lặp lại một việc nhiều lần",
+    blocks: [
+      { type: "p", text: "Vòng lặp for sinh ra để giải quyết một việc rất đời thường: khi bạn muốn làm cùng một hành động nhiều lần, thay vì copy-paste nhiều dòng code giống nhau." },
+      { type: "h", text: "Nếu chưa có vòng lặp" },
+      { type: "p", text: "Giả sử bạn muốn in ra các số từ 1 đến 5. Cách thô nhất là viết từng dòng một." },
+      {
+        type: "code",
+        text: `console.log(1);
+console.log(2);
+console.log(3);
+console.log(4);
+console.log(5);`,
+      },
+      { type: "p", text: "Cách này chạy được, nhưng nếu cần in từ 1 đến 100 thì code sẽ rất dài. Khi gặp việc lặp đi lặp lại như vậy, ta dùng for." },
+      { type: "h", text: "Cấu trúc của for" },
+      {
+        type: "code",
+        text: `for (let i = 1; i <= 5; i++) {
+  console.log(i);
+}`,
+      },
+      { type: "p", text: "Một vòng for có 3 phần nằm trong dấu ngoặc tròn. Phần 1 tạo biến đếm. Phần 2 là điều kiện để còn tiếp tục lặp. Phần 3 là việc làm sau mỗi lượt lặp, thường là tăng biến đếm." },
+      {
+        type: "list",
+        items: [
+          "let i = 1: bắt đầu từ số 1.",
+          "i <= 5: còn đúng thì vòng lặp còn chạy.",
+          "i++: sau mỗi lượt, tăng i thêm 1.",
+        ],
+      },
+      { type: "h", text: "Luồng chạy từng bước" },
+      { type: "p", text: "JavaScript sẽ chạy như sau: tạo i = 1, kiểm tra i <= 5, chạy code trong ngoặc nhọn, sau đó i++. Rồi lại kiểm tra điều kiện. Khi i thành 6, điều kiện i <= 5 sai, vòng lặp dừng." },
+      {
+        type: "code",
+        text: `Lượt 1: i = 1, in 1, rồi i thành 2
+Lượt 2: i = 2, in 2, rồi i thành 3
+Lượt 3: i = 3, in 3, rồi i thành 4
+Lượt 4: i = 4, in 4, rồi i thành 5
+Lượt 5: i = 5, in 5, rồi i thành 6
+Dừng: i = 6, điều kiện i <= 5 sai`,
+      },
+      { type: "h", text: "Ví dụ tính tổng" },
+      {
+        type: "code",
+        text: `function sumToN(n) {
+  let total = 0;
+
+  for (let i = 1; i <= n; i++) {
+    total = total + i;
+  }
+
+  return total;
+}`,
+      },
+      { type: "p", text: "Biến total giống như cái hộp đang gom kết quả. Mỗi lượt lặp, ta lấy i hiện tại và cộng thêm vào hộp đó. Sau khi vòng lặp kết thúc, return total." },
+      { type: "h", text: "Lỗi hay gặp" },
+      {
+        type: "list",
+        items: [
+          "Quên i++. Khi biến đếm không tăng, vòng lặp có thể chạy mãi.",
+          "Điều kiện dừng sai, ví dụ muốn chạy 1 đến 5 nhưng viết i < 5 thì số 5 bị bỏ qua.",
+          "Đặt return quá sớm bên trong vòng lặp. Nếu return ngay trong lượt đầu, vòng lặp chưa kịp chạy hết.",
+        ],
+      },
+      { type: "h", text: "Câu chốt để nhớ" },
+      { type: "p", text: "For nghĩa là: bắt đầu ở đâu, còn chạy đến khi nào, sau mỗi lượt thay đổi ra sao. Khi hiểu được 3 câu hỏi này, vòng lặp for sẽ bớt đáng sợ rất nhiều." },
+    ],
+  },
+  {
+    id: "for-array-loop",
+    title: "Mức 5: Vòng lặp for với mảng",
+    meta: "Thực hành: index, array.length, push, continue, break",
+    blocks: [
+      { type: "p", text: "Sau khi hiểu for cơ bản, bước tiếp theo là dùng for để duyệt mảng. Đây là kỹ năng rất quan trọng vì dữ liệu thực tế thường nằm trong danh sách: điểm số, tên người dùng, năm sinh, sản phẩm, bài tập." },
+      { type: "h", text: "Index bắt đầu từ 0" },
+      { type: "p", text: "Trong JavaScript, phần tử đầu tiên của mảng nằm ở vị trí 0, không phải 1. Vì vậy khi duyệt mảng bằng for, ta thường bắt đầu với let i = 0." },
+      {
+        type: "code",
+        text: `const scores = [8, 9, 10];
+
+console.log(scores[0]); // 8
+console.log(scores[1]); // 9
+console.log(scores[2]); // 10`,
+      },
+      { type: "h", text: "Công thức duyệt mảng" },
+      {
+        type: "code",
+        text: `const scores = [8, 9, 10];
+
+for (let i = 0; i < scores.length; i++) {
+  console.log(scores[i]);
+}`,
+      },
+      {
+        type: "list",
+        items: [
+          "let i = 0: bắt đầu từ index đầu tiên.",
+          "i < scores.length: chạy đến trước độ dài mảng.",
+          "scores[i]: lấy phần tử ở vị trí i.",
+        ],
+      },
+      { type: "h", text: "Vì sao không hard-code độ dài" },
+      { type: "p", text: "Hard-code nghĩa là viết cố định một con số vào code, ví dụ i < 3. Cách này chỉ đúng khi mảng luôn có đúng 3 phần tử. Nếu mảng dài hơn hoặc ngắn hơn, code sẽ sai hoặc bỏ sót dữ liệu." },
+      {
+        type: "code",
+        text: `const scores = [8, 9, 10, 7];
+
+// Không nên: chỉ chạy 3 phần tử đầu
+for (let i = 0; i < 3; i++) {
+  console.log(scores[i]);
+}
+
+// Nên: mảng dài bao nhiêu thì chạy bấy nhiêu
+for (let i = 0; i < scores.length; i++) {
+  console.log(scores[i]);
+}`,
+      },
+      { type: "p", text: "Câu thần chú khi duyệt mảng bằng index là: bắt đầu từ 0, chạy khi i < array.length, đọc phần tử bằng array[i]." },
+      { type: "h", text: "Ví dụ tính tổng mảng" },
+      {
+        type: "code",
+        text: `function sumArray(numbers) {
+  let total = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    total = total + numbers[i];
+  }
+
+  return total;
+}`,
+      },
+      { type: "p", text: "Ở đây i là vị trí, còn numbers[i] mới là con số thật sự trong mảng. Mỗi lượt lặp, ta cộng con số đó vào total." },
+      { type: "h", text: "Tạo mảng mới bằng push" },
+      { type: "p", text: "Khi muốn biến mảng cũ thành mảng mới, ta thường tạo result = [], duyệt từng phần tử của mảng cũ, tính giá trị mới, rồi push vào result." },
+      {
+        type: "code",
+        text: `function doubleNumbers(numbers) {
+  const result = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    result.push(numbers[i] * 2);
+  }
+
+  return result;
+}`,
+      },
+      { type: "h", text: "Tạo mảng mới bằng index" },
+      { type: "p", text: "Ngoài push, bạn cũng có thể gán trực tiếp vào đúng vị trí i của mảng kết quả. Cách này hữu ích khi mảng mới có cùng số phần tử và cùng thứ tự với mảng cũ." },
+      {
+        type: "code",
+        text: `function doubleNumbers(numbers) {
+  const result = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    result[i] = numbers[i] * 2;
+  }
+
+  return result;
+}`,
+      },
+      { type: "h", text: "Ví dụ years sang ages" },
+      { type: "p", text: "Nếu có mảng năm sinh, ta có thể tạo mảng tuổi. Mỗi phần tử mới được tính từ phần tử cũ ở cùng vị trí." },
+      {
+        type: "code",
+        text: `function getAges(years, currentYear) {
+  const ages = [];
+
+  for (let i = 0; i < years.length; i++) {
+    ages.push(currentYear - years[i]);
+  }
+
+  return ages;
+}
+
+getAges([2000, 2005, 2010], 2026); // [26, 21, 16]`,
+      },
+      { type: "h", text: "Lab 17.5: populations sang percentages" },
+      { type: "p", text: "Bài populations cũng là cùng một mẫu: mảng cũ chứa dân số theo triệu người, mảng mới chứa phần trăm dân số thế giới. Điểm cần luyện là không viết từng index thủ công nữa, mà để vòng lặp đi qua toàn bộ mảng." },
+      {
+        type: "code",
+        text: `function percentageOfWorld1(population) {
+  return ((population * 1000000) / 7900000000) * 100;
+}
+
+const populations = [102, 1441, 348, 112];
+const percentages2 = [];
+
+for (let i = 0; i < populations.length; i++) {
+  percentages2.push(percentageOfWorld1(populations[i]));
+}
+
+console.log(percentages2);`,
+      },
+      { type: "p", text: "Trong vòng lặp này, i là vị trí: 0, 1, 2, 3. Còn populations[i] mới là dân số thật ở vị trí đó. Mỗi lượt, ta đưa dân số hiện tại vào hàm percentageOfWorld1 rồi push kết quả vào percentages2." },
+      { type: "h", text: "continue: bỏ qua lượt hiện tại" },
+      { type: "p", text: "continue không dừng cả vòng lặp. Nó chỉ bỏ qua phần còn lại của lượt hiện tại, rồi đi sang lượt kế tiếp." },
+      {
+        type: "code",
+        text: `function positiveNumbers(numbers) {
+  const result = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] <= 0) continue;
+    result.push(numbers[i]);
+  }
+
+  return result;
+}`,
+      },
+      { type: "p", text: "Trong ví dụ này, nếu số hiện tại nhỏ hơn hoặc bằng 0, continue làm JavaScript bỏ qua dòng push và đi tiếp sang số sau." },
+      { type: "h", text: "break: dừng vòng lặp" },
+      { type: "p", text: "break mạnh hơn continue. Khi gặp break, vòng lặp kết thúc ngay. Ta dùng break khi đã tìm thấy thứ cần tìm và không cần duyệt tiếp." },
+      {
+        type: "code",
+        text: `function firstOverLimit(numbers, limit) {
+  let found = null;
+
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > limit) {
+      found = numbers[i];
+      break;
+    }
+  }
+
+  return found;
+}`,
+      },
+      { type: "h", text: "Kiểm tra nhanh" },
+      {
+        type: "list",
+        items: [
+          "Mảng bắt đầu từ index mấy? Đáp án: 0.",
+          "Vì sao dùng i < array.length? Vì index cuối là array.length - 1.",
+          "array[i] nghĩa là gì? Là phần tử ở vị trí i.",
+          "push khác result[i] ở đâu? push thêm vào cuối; result[i] gán vào đúng vị trí i.",
+          "continue làm gì? Bỏ qua lượt hiện tại.",
+          "break làm gì? Dừng cả vòng lặp.",
+        ],
+      },
+      { type: "h", text: "Lỗi hay gặp" },
+      {
+        type: "list",
+        items: [
+          "Dùng i <= arr.length khi duyệt mảng. Vị trí cuối là arr.length - 1, nên điều kiện thường là i < arr.length.",
+          "Nhầm i với phần tử. i là vị trí, arr[i] mới là giá trị trong mảng.",
+          "Hard-code độ dài, ví dụ i < 3, làm code bị sai khi mảng đổi số phần tử.",
+          "Return quá sớm bên trong vòng lặp. Nếu return ngay trong lượt đầu, vòng lặp chưa kịp xử lý các phần tử còn lại.",
+        ],
+      },
+      { type: "h", text: "Câu chốt để nhớ" },
+      { type: "p", text: "Khi duyệt mảng bằng for, hãy luôn tự hỏi: index bắt đầu từ đâu, điều kiện có dựa vào array.length không, và mình đang dùng i hay array[i]." },
+    ],
+  },
+  {
+    id: "reverse-and-nested-loops",
+    title: "Mức 6: Duyệt ngược và vòng lặp lồng nhau",
+    meta: "Thực hành: i--, array.length - 1, outer loop, inner loop",
+    blocks: [
+      { type: "p", text: "Sau khi đã biết duyệt mảng từ trái sang phải, ta học thêm hai kỹ thuật hay gặp: duyệt mảng ngược và vòng lặp lồng nhau. Hai phần này nhìn hơi rối lúc đầu, nhưng thật ra vẫn đi theo cùng một nguyên tắc: biết điểm bắt đầu, điều kiện dừng và cách cập nhật biến đếm." },
+      { type: "h", text: "Duyệt mảng ngược" },
+      { type: "p", text: "Khi duyệt mảng xuôi, ta bắt đầu từ index 0. Khi duyệt mảng ngược, ta bắt đầu từ index cuối cùng. Index cuối cùng không nên hard-code, vì mảng có thể dài ngắn khác nhau. Công thức đúng là array.length - 1." },
+      {
+        type: "code",
+        text: `const names = ["An", "Binh", "Chi"];
+
+for (let i = names.length - 1; i >= 0; i--) {
+  console.log(names[i]);
+}`,
+      },
+      {
+        type: "list",
+        items: [
+          "let i = names.length - 1: bắt đầu từ index cuối.",
+          "i >= 0: còn chưa đi qua đầu mảng thì còn chạy.",
+          "i--: sau mỗi lượt, lùi i về bên trái một bước.",
+          "names[i]: đọc phần tử tại vị trí i.",
+        ],
+      },
+      { type: "h", text: "Vì sao không hard-code index cuối" },
+      { type: "p", text: "Nếu viết let i = 2, code chỉ đúng với mảng có 3 phần tử. Khi mảng có 4, 5 hoặc 1 phần tử, code sẽ sai. Dùng array.length - 1 giúp vòng lặp tự thích nghi với độ dài thật của mảng." },
+      {
+        type: "code",
+        text: `function reverseArray(items) {
+  const result = [];
+
+  for (let i = items.length - 1; i >= 0; i--) {
+    result.push(items[i]);
+  }
+
+  return result;
+}`,
+      },
+      { type: "h", text: "Vòng lặp lồng nhau" },
+      { type: "p", text: "Vòng lặp lồng nhau nghĩa là một vòng lặp nằm bên trong một vòng lặp khác. Vòng bên ngoài thường gọi là outer loop. Vòng bên trong gọi là inner loop." },
+      {
+        type: "code",
+        text: `for (let exercise = 1; exercise <= 3; exercise++) {
+  for (let repetition = 1; repetition <= 5; repetition++) {
+    console.log("Exercise " + exercise + " - rep " + repetition);
+  }
+}`,
+      },
+      { type: "p", text: "Cách đọc: outer loop chạy exercise 1, inner loop chạy đủ repetition 1 đến 5. Sau đó outer loop sang exercise 2, inner loop lại chạy đủ 1 đến 5. Rồi exercise 3 cũng như vậy. Tổng số lần chạy bên trong là 3 * 5 = 15 lần." },
+      {
+        type: "list",
+        items: [
+          "Outer loop quyết định đang ở bài tập số mấy.",
+          "Inner loop quyết định đang ở lần lặp thứ mấy.",
+          "Mỗi 1 lượt của outer loop, inner loop chạy trọn bộ 5 lượt.",
+          "Biến của outer loop có thể dùng bên trong inner loop, ví dụ exercise nằm trong câu console.log bên trong.",
+        ],
+      },
+      { type: "h", text: "Tạo danh sách bằng nested loops" },
+      {
+        type: "code",
+        text: `function trainingLog() {
+  const result = [];
+
+  for (let exercise = 1; exercise <= 3; exercise++) {
+    for (let repetition = 1; repetition <= 5; repetition++) {
+      result.push("Exercise " + exercise + " - rep " + repetition);
+    }
+  }
+
+  return result;
+}`,
+      },
+      { type: "h", text: "Kiểm tra nhanh" },
+      {
+        type: "list",
+        items: [
+          "Muốn lấy index cuối của mảng thì viết gì? Đáp án: array.length - 1.",
+          "Duyệt ngược thì cập nhật i như thế nào? Đáp án: i--.",
+          "Điều kiện để duyệt ngược đến đầu mảng là gì? Đáp án: i >= 0.",
+          "Outer loop chạy 3 lượt, inner loop chạy 5 lượt mỗi lần, tổng inner chạy mấy lần? Đáp án: 15.",
+          "Biến exercise của outer loop có dùng được bên trong inner loop không? Có.",
+        ],
+      },
+      { type: "h", text: "Lỗi hay gặp" },
+      {
+        type: "list",
+        items: [
+          "Viết let i = 3 vì thấy mảng mẫu có 4 phần tử. Hãy dùng array.length - 1 để tránh hard-code.",
+          "Duyệt ngược nhưng vẫn viết i++. Khi đó i đi sai hướng.",
+          "Viết i > 0 thay vì i >= 0, làm bỏ sót phần tử đầu tiên.",
+          "Nghĩ inner loop chỉ chạy một lần. Thực ra mỗi lượt outer loop sẽ chạy lại toàn bộ inner loop.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "while-loop-foundation",
+    title: "Mức 7: While loop",
+    meta: "Nền tảng: lặp khi điều kiện còn đúng",
+    blocks: [
+      { type: "p", text: "for loop và while loop đều dùng để lặp, nhưng cách nghĩ hơi khác nhau. for thường hợp khi bạn biết rõ số lần lặp hoặc đang duyệt mảng bằng index. while hợp khi bạn chỉ biết điều kiện tiếp tục, còn số lần lặp có thể không biết trước." },
+      { type: "h", text: "So sánh for và while" },
+      {
+        type: "code",
+        text: `for (let rep = 1; rep <= 10; rep++) {
+  console.log("Rep " + rep);
+}`,
+      },
+      { type: "p", text: "Trong for, phần khởi tạo, điều kiện và cập nhật nằm cùng một dòng. Với while, trong ngoặc chỉ có điều kiện. Vì vậy ta thường phải khởi tạo biến trước while và cập nhật biến bên trong block." },
+      {
+        type: "code",
+        text: `let rep = 1;
+
+while (rep <= 10) {
+  console.log("Rep " + rep);
+  rep++;
+}`,
+      },
+      {
+        type: "list",
+        items: [
+          "let rep = 1: khởi tạo biến trước vòng lặp.",
+          "while (rep <= 10): còn true thì còn chạy.",
+          "rep++: cập nhật bên trong block để điều kiện dần thay đổi.",
+        ],
+      },
+      { type: "h", text: "while chỉ nhận điều kiện" },
+      { type: "p", text: "Trong dấu ngoặc của while không có chỗ riêng cho khởi tạo hay cập nhật. JavaScript chỉ hỏi: điều kiện này đang true hay false? Nếu true thì chạy block. Nếu false ngay từ đầu thì block chạy 0 lần." },
+      { type: "h", text: "Cảnh báo infinite loop" },
+      { type: "p", text: "Infinite loop là vòng lặp chạy mãi không dừng. Lỗi này thường xảy ra khi bạn quên cập nhật biến làm điều kiện thay đổi." },
+      {
+        type: "code",
+        text: `let rep = 1;
+
+while (rep <= 10) {
+  console.log("Rep " + rep);
+  // Quên rep++ ở đây thì rep luôn là 1.
+  // Điều kiện rep <= 10 luôn true.
+}`,
+      },
+      { type: "h", text: "Ví dụ gieo xúc xắc" },
+      { type: "p", text: "while rất hợp khi không biết trước cần lặp bao nhiêu lần. Ví dụ gieo xúc xắc: ta muốn tiếp tục roll cho đến khi ra số 6. Không ai biết phải gieo 1 lần, 3 lần hay 20 lần." },
+      {
+        type: "code",
+        text: `let dice = Math.trunc(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+  console.log("Bạn gieo được " + dice);
+  dice = Math.trunc(Math.random() * 6) + 1;
+}
+
+console.log("Ra 6, dừng lại!");`,
+      },
+      { type: "p", text: "Điểm quan trọng: mỗi lượt trong while phải tạo dice mới. Nếu không tạo dice mới, giá trị dice không đổi và điều kiện có thể true mãi. Nếu dice ban đầu đã là 6, điều kiện dice !== 6 là false ngay từ đầu, nên while chạy 0 lần." },
+      { type: "h", text: "Khi nào dùng while" },
+      {
+        type: "list",
+        items: [
+          "Dùng while khi chưa biết trước số lần lặp, chỉ biết điều kiện dừng.",
+          "Dùng while cho các tình huống như gieo xúc xắc đến khi ra 6, hỏi lại người dùng đến khi nhập đúng, hoặc đọc dữ liệu đến khi gặp điểm dừng.",
+          "Dùng for khi biết số lần lặp, ví dụ 10 reps, hoặc khi duyệt mảng với i từ 0 đến array.length.",
+        ],
+      },
+      { type: "h", text: "Kiểm tra nhanh" },
+      {
+        type: "list",
+        items: [
+          "while nhận mấy phần chính trong ngoặc? Đáp án: một điều kiện.",
+          "Biến đếm của while thường khởi tạo ở đâu? Đáp án: trước while.",
+          "Cập nhật biến đếm thường đặt ở đâu? Đáp án: bên trong block while.",
+          "Nếu điều kiện while false ngay từ đầu thì chạy mấy lần? Đáp án: 0 lần.",
+          "Quên cập nhật điều kiện có thể gây lỗi gì? Đáp án: infinite loop.",
+          "Gieo xúc xắc đến khi ra 6 là for hay while hợp hơn? Đáp án: while, vì không biết trước số lần gieo.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "project-overview-function-gym",
+    title: "Mức 8: Đọc dự án Function Gym",
+    meta: "Thực tế: app học lập trình này đang chạy thế nào",
+    blocks: [
+      { type: "p", text: "Dự án hiện tại là một app web tĩnh để luyện JavaScript. Tĩnh nghĩa là không có server, không có database, không cần cài thư viện. Trình duyệt chỉ mở index.html, rồi tải styles.css, curriculum.js và app.js." },
+      { type: "h", text: "Vai trò từng file" },
+      {
+        type: "list",
+        items: [
+          "index.html tạo khung giao diện: sidebar, màn hình bài tập, playground và notebook.",
+          "styles.css quyết định bố cục, màu sắc, khoảng cách và trạng thái nút.",
+          "curriculum.js chứa dữ liệu bài học: đề bài, test, gợi ý và lời giải.",
+          "app.js là phần điều khiển: render bài tập, chạy code, chấm test, lưu tiến độ và đổi chế độ xem.",
+        ],
+      },
+      { type: "h", text: "Luồng chạy chính" },
+      { type: "p", text: "Khi trang mở, curriculum.js tạo ra window.basicCurriculumExercises và window.basicCurriculumSolutions. Sau đó app.js đọc hai biến này để thay danh sách bài tập mặc định bằng bộ bài đầy đủ." },
+      {
+        type: "code",
+        text: `if (window.basicCurriculumExercises && window.basicCurriculumSolutions) {
+  exercises.splice(0, exercises.length, ...window.basicCurriculumExercises);
+  Object.assign(exerciseSolutions, window.basicCurriculumSolutions);
+}`,
+      },
+      { type: "p", text: "Mỗi bài tập là một object. Object đó có id, title, prompt, example, hint và tests. Khi bạn bấm Chạy code, app lấy code trong textarea, chạy từng expression trong tests, rồi so sánh actual với expected." },
+      {
+        type: "code",
+        text: `{
+  id: "array-07-sum",
+  title: "Array 07 - Cộng mảng: sumArray",
+  tests: [
+    { expression: "sumArray([1, 2, 3])", expected: 6 }
+  ]
+}`,
+      },
+      { type: "h", text: "Tiến độ được lưu ở đâu" },
+      { type: "p", text: "App dùng localStorage để lưu dữ liệu ngay trong trình duyệt của bạn. Ví dụ danh sách bài đã đúng được lưu với key functionGymPassed. Vì vậy tải lại trang thì tiến độ vẫn còn, nhưng đổi trình duyệt hoặc xóa dữ liệu web thì tiến độ sẽ mất." },
+      {
+        type: "code",
+        text: `localStorage.setItem("functionGymPassed", JSON.stringify([...state.passed]));`,
+      },
+      { type: "h", text: "Điểm cần nhớ khi mở rộng app" },
+      {
+        type: "list",
+        items: [
+          "Muốn thêm bài tập hàng loạt thì thêm dữ liệu vào curriculum.js.",
+          "Muốn thêm bài lý thuyết thì thêm một object mới vào notebookArticles trong app.js.",
+          "Muốn đổi giao diện thì sửa styles.css.",
+          "Muốn đổi cách chấm bài hoặc lưu tiến độ thì sửa app.js.",
+        ],
+      },
+    ],
+  },
 ];
 
 const state = {
@@ -989,7 +1478,7 @@ const state = {
   openGroups: new Set(["Biến"]),
   singleGroupMode: localStorage.getItem("functionGymSingleGroupMode") !== "false",
   currentNotebookId: notebookArticles[0].id,
-  currentMode: "exercise",
+  currentMode: "notebook",
 };
 
 const exerciseGroupOrder = [
@@ -999,6 +1488,7 @@ const exerciseGroupOrder = [
   "Function",
   "Array",
   "Object",
+  "Project",
 ];
 
 const exerciseList = document.querySelector("#exerciseList");
@@ -1726,5 +2216,5 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-setMode("exercise");
 renderCurrentExercise();
+setMode("notebook");

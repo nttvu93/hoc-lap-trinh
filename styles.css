@@ -17,9 +17,16 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   margin: 0;
+  height: 100%;
   min-height: 100vh;
+  overflow: hidden;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(246, 247, 251, 0.95)),
     linear-gradient(90deg, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
@@ -44,8 +51,11 @@ textarea {
   display: grid;
   grid-template-columns: 320px minmax(0, 1fr);
   gap: 18px;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
   padding: 18px;
+  overflow: hidden;
 }
 
 .sidebar,
@@ -60,6 +70,9 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  min-height: 0;
+  max-height: calc(100vh - 36px);
+  max-height: calc(100dvh - 36px);
   border-radius: 8px;
   padding: 20px;
   overflow: hidden;
@@ -158,9 +171,12 @@ textarea {
 
 .exercise-list {
   display: grid;
+  flex: 1;
   gap: 10px;
+  min-height: 0;
   overflow: auto;
   padding-right: 4px;
+  overscroll-behavior: contain;
 }
 
 .exercise-group {
@@ -255,10 +271,14 @@ textarea {
   border-radius: 8px;
   padding: 20px;
   min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .app-view {
   min-height: calc(100vh - 78px);
+  min-height: calc(100dvh - 78px);
 }
 
 .app-view[hidden],
@@ -707,6 +727,8 @@ textarea {
 @media (max-width: 900px) {
   .app-shell {
     grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 42vh) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 42dvh) minmax(0, 1fr);
     padding: 12px;
   }
 
@@ -716,7 +738,7 @@ textarea {
 
   .exercise-list {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    overflow: visible;
+    overflow: auto;
   }
 
   .mode-tabs {
